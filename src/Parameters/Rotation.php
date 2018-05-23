@@ -8,6 +8,11 @@ class Rotation extends ParameterAbstract implements ParameterInterface
 {
     public function apply(array $options)
     {
-        return $this->image->encode($options[0]);
+        $mirror = strpos($options[0], '!') === false ? false : true;
+        $rotation = $mirror ? substr($options[0], 1) : $options[0];
+        if ($mirror) {
+            $this->image->flip('h');
+        }
+        return $this->image->rotate(-$rotation);
     }
 }

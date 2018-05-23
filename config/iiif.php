@@ -2,21 +2,29 @@
 
 return [
 
-    'driver' => 'gd',
+    'driver' => 'gd', //'imagick',
 
     'parameters' => [
-        'region' => \Conlect\ImageIIIF\Parameter\Region::class,
-        'size' => \Conlect\ImageIIIF\Parameter\Size::class,
-        'rotation' => \Conlect\ImageIIIF\Parameter\Rotation::class,
-        'quality' => \Conlect\ImageIIIF\Parameter\Quality::class,
-        'format' => \Conlect\ImageIIIF\Parameter\Format::class,
+        'region' => \Conlect\ImageIIIF\Parameters\Region::class,
+        'size' => \Conlect\ImageIIIF\Parameters\Size::class,
+        'rotation' => \Conlect\ImageIIIF\Parameters\Rotation::class,
+        'quality' => \Conlect\ImageIIIF\Parameters\Quality::class,
+        'format' => \Conlect\ImageIIIF\Parameters\Format::class,
     ],
 
-    'supports' => [
-        'baseUriRedirect', // The base URI of the service will redirect to the image information document.
-        'canonicalLinkHeader', //
-        'cors',
+    'formats' => [
+        'jpg', // image/jpeg
+        // 'tif', // image/tiff
+        'png', // image/png
+        'gif', // image/gif
+        // 'jp2', // image/jp2
+        'pdf', // application/pdf
+        'webp', // image/webp
     ],
+
+    'maxArea' => null,
+    'maxHeight' => null,
+    'maxWidth' => null,
 
     'qualities' => [
         'color', // full color
@@ -27,13 +35,11 @@ return [
 
     'quality_default' => 'color',
 
-    'formats' => [
-        'jpg', // image/jpeg
-        'tif', // image/tiff
-        'png', // image/png
-        'gif', // image/gif
-        'jp2', // image/jp2
-        'pdf', // application/pdf
-        'webp', // image/webp
+    'supports' => [
+        'baseUriRedirect', // The base URI of the service will redirect to the image information document.
+        'canonicalLinkHeader', //
+        'cors',
     ],
+
+
 ];

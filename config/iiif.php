@@ -12,6 +12,12 @@ return [
         'format' => \Conlect\ImageIIIF\Parameters\Format::class,
     ],
 
+    'regex' => [
+        'region' => 'full|square|[0-9]+,[0-9]+,[0-9]+,[0-9]+|pct:[0-9]+\.?\d{0,10},[0-9]+\.?\d{0,10},[0-9]+\.?\d{0,10},[0-9]+\.?\d{0,10}',
+        'size' => 'full|max|[0-9]+,|,[0-9]+|pct:[0-9]+\.?\d{0,10}|[0-9]+,[0-9]+|![0-9]+,[0-9]+',
+        'rotation' => '![0-9]+\.?\d{0,10}|[0-9]+\.?\d{0,10}',
+    ],
+
     'formats' => [
         'jpg', // image/jpeg
         // 'tif', // image/tiff
@@ -29,7 +35,7 @@ return [
     'qualities' => [
         'color', // full color
         'gray', // grayscale
-        'bitonal', // each pixel is either black or white.
+        // 'bitonal', // each pixel is either black or white. (imagick only)
         'default', // default quality
     ],
 

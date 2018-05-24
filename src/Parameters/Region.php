@@ -17,11 +17,30 @@ class Region extends ParameterAbstract implements ParameterInterface
             return $this->image;
         }
 
+        $height = $this->image->height();
+        $width = $this->image->width();
+
         if ($options[0] === 'square') {
-            $height = $this->image->height();
-            $width = $this->image->width();
             $fit = $width >= $height ? $width : $height;
             return $this->image->fit($fit, null, null, 'center');
         }
+
+        if (strpos($options[0], 'pct:') === false) {
+            // iiif - x,y,w,h
+            // intervention - w,h,x,y
+            return $this->image->crop($options[2], $options[3], $options[0], $options[1]);
+        }
+
+        $x = $width * $options[2] / 100;
+        $y = $height * $options[3] / 100;
+        $w = $width * substr($options[0], 4) / 100;
+        $h = $height * $options[1] / 100;
+        // dd($width); // 2800
+        // dd($x + $w);
+
+        return $this->image->crop($x, $y, $w, $h);
+
+
+
     }
 }

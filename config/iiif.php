@@ -4,6 +4,8 @@ return [
 
     'driver' => 'gd', //'imagick',
 
+    'cache' => true,
+
     'parameters' => [
         'region' => \Conlect\ImageIIIF\Parameters\Region::class,
         'size' => \Conlect\ImageIIIF\Parameters\Size::class,

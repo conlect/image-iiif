@@ -3,11 +3,12 @@
 namespace Conlect\ImageIIIF;
 
 use Noodlehaus\Config;
+use Intervention\Image\ImageCache;
 use Intervention\Image\ImageManager;
 
 class ImageIIIF
 {
-    protected $manager;
+    public $manager;
 
     protected $config;
 
@@ -35,20 +36,19 @@ class ImageIIIF
 
     public function stream()
     {
-        return $this->image->encode('png')->stream();
+        return $this->image->stream();
     }
 
     protected function applyParameters(array $parameters)
     {
         $availableParameters = $this->config->get('parameters');
-        // dd($availableParameters);
 
-        foreach ($parameters as $filter => $options) {
-            if (!in_array($filter, array_keys($availableParameters))) {
+        foreach ($parameters as $parameter => $options) {
+            if (!in_array($parameter, array_keys($availableParameters))) {
                 continue;
             }
 
-            $this->image = (new $availableParameters[$filter]($this->image))->apply(explode(',', $options));
+            $this->image = (new $availableParameters[$parameter]($this->image))->apply($options);
         }
     }
 }

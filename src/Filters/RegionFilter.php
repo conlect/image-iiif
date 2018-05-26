@@ -46,12 +46,10 @@ class RegionFilter implements FilterInterface
 
         if (strpos($this->options[0], 'pct:') === false) {
             // iiif - x,y,w,h
-            // intervention - w,h,x,y
-
-            $x = $this->options[2];
-            $y = $this->options[3];
-            $w = $this->options[0];
-            $h = $this->options[1];
+            $x = $this->options[0];
+            $y = $this->options[1];
+            $w = $this->options[2];
+            $h = $this->options[3];
 
             if (($x + $w) > $width) {
                 $w = $w - (($x + $w) - $width);
@@ -61,14 +59,25 @@ class RegionFilter implements FilterInterface
                 $h = $h - (($y + $h) - $height);
             }
 
+            // intervention - w,h,x,y
             return $image->crop($x, $y, $w, $h);
         }
 
-        $x = $width * $this->options[2] / 100;
-        $y = $height * $this->options[3] / 100;
-        $w = $width * substr($this->options[0], 4) / 100;
-        $h = $height * $this->options[1] / 100;
+        // iiif - x,y,w,h
+        $x = $width * substr($this->options[0], 4) / 100;
+        $y = $height * $this->options[1] / 100;
+        $w = $width * $this->options[2] / 100;
+        $h = $height * $this->options[3] / 100;
 
-        return $image->crop($x, $y, $w, $h);
+        if ($this->options[2] + substr($this->options[0], 4) > 100) {
+            $w = $width - $x;
+        }
+
+        if ($this->options[3] + $this->options[1] > 100) {
+            $h = $height - $y;
+        }
+
+        // intervention - w,h,x,y
+        return $image->crop($w, $h, $x, $y);
     }
 }

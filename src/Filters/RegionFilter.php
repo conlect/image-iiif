@@ -64,10 +64,10 @@ class RegionFilter implements FilterInterface
         }
 
         // iiif - x,y,w,h
-        $x = $width * substr($this->options[0], 4) / 100;
-        $y = $height * $this->options[1] / 100;
-        $w = $width * $this->options[2] / 100;
-        $h = $height * $this->options[3] / 100;
+        $x = (int) round($width * substr($this->options[0], 4) / 100);
+        $y = (int) round($height * $this->options[1] / 100);
+        $w = (int) round($width * $this->options[2] / 100);
+        $h = (int) round($height * $this->options[3] / 100);
 
         if ($this->options[2] + substr($this->options[0], 4) > 100) {
             $w = $width - $x;

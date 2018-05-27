@@ -60,7 +60,7 @@ class RegionFilter implements FilterInterface
             }
 
             // intervention - w,h,x,y
-            return $image->crop($x, $y, $w, $h);
+            return $image->crop($w, $h, $x, $y);
         }
 
         // iiif - x,y,w,h

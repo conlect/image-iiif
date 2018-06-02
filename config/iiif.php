@@ -4,7 +4,11 @@ return [
 
     'driver' => 'gd', //'imagick',
 
-    'cache' => true,
+    'base_url' => 'http://packages.test',
+
+    'prefix' => 'iiif',
+
+    'tile_width' => 1024,
 
     'parameters' => [
         'region' => \Conlect\ImageIIIF\Parameters\Region::class,

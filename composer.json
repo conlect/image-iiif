@@ -24,9 +24,6 @@
         "larapack/dd": "^1.0",
         "phpunit/phpunit": "^7.0"
     },
-    "suggest": {
-        "jcupitt/vips": "A fast image processing library with low memory needs.",
-    },
     "autoload": {
         "psr-4": {
             "Conlect\\ImageIIIF\\": "src"

@@ -2,7 +2,7 @@
 
 return [
 
-    'driver' => 'gd', //imagick, vips
+    'driver' => 'gd', //imagick
 
     'base_url' => 'http://packages.test',
 

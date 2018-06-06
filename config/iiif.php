@@ -10,6 +10,8 @@ return [
 
     'tile_width' => 1024,
 
+    'quality' => 90,
+
     'parameters' => [
         'region' => \Conlect\ImageIIIF\Parameters\Region::class,
         'size' => \Conlect\ImageIIIF\Parameters\Size::class,
@@ -65,6 +67,4 @@ return [
         'canonicalLinkHeader', //
         'cors',
     ],
-
-
 ];

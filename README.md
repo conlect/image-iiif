@@ -2,25 +2,18 @@
 
 # Image IIIF
 
-Package implements the [IIIF Image API 2.1](http://iiif.io/api/image/2.1/).  The package is unopinionated about implementation and many `MUST` features are not included. It is a bring your own framework solution for PHP. Regex is provided within the config for validation of image request parameters.
+This package implements the [IIIF Image API 2.1](http://iiif.io/api/image/2.1/) it is unopinionated about implementation and many of the `MUST` features are not included. I consider it a bring your own framework solution for implementing Image API 2.1 with PHP. The package utilizes the [Intervention Image](http://image.intervention.io/) package for manipulations. I have provide Regex within config for validation of image request parameters.
 
-Supports all Image Request Parameters:
+**Supports all Image Request Parameters:**
 - Region (full || square || x,y,w,h || pct:x,y,w,h)
 - Size (full || max || w, || ,h || pct:n || w,h || !w,h)
 - Rotation (n || !n)
 - Quality (color || gray || default)
 - Format (jpg || png || gif || webp)
 
-Supports the `info.json` response for  a indentifier.
+Supports the `info.json` response for an identifier.
 
 Currently only tested with 'GD' Libray. If utilizing 'Imagick' more config options may become available.
-
-Todo:
-- support more formats (tif, pdf)
-- figure out how to handle bitonal 1-bit images
-- utilize [php-vips](https://github.com/jcupitt/php-vips)
-- setup demo / documentation site
-- Laravel and Slim demo applications
 
 
 #### Laravel image route example:
@@ -64,3 +57,13 @@ Route::get('iiif/{identifier}/info.json',
     }
 );
 ```
+
+<br>
+
+**Todo:**
+- utilize [php-vips](https://github.com/jcupitt/php-vips) or create second libvips implemetation
+- setup demo / documentation site
+- Laravel and Slim demo applications
+- figure out how to handle bitonal 1-bit images
+- support more formats (tif, pdf)
+- support optional "sizes" within info.json

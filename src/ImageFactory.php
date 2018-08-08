@@ -15,7 +15,7 @@ class ImageFactory
     protected $driver = 'gd';
 
 
-   public function __invoke(array $config = null)
+   public function __invoke(Config $config = null)
    {
         if (is_null($config)) {
            $config = new Config(__DIR__ . '/../config');

@@ -61,9 +61,9 @@ class ImageIIIF
             'width' => $this->image->width(),
             'profile' => [
                 'http://iiif.io/api/image/2/level2.json', [
-                    'supports' => config('iiif.supports'),
-                    'qualities' => config('iiif.qualities'),
-                    'formats' => config('iiif.formats')
+                    'supports' => $this->config->get('supports'),
+                    'qualities' => $this->config->get('qualities'),
+                    'formats' => $this->config->get('formats')
                 ]
             ],
             'tiles'=> [

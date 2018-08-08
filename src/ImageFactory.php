@@ -19,6 +19,8 @@ class ImageFactory
    {
         if (is_null($config)) {
            $config = new Config(__DIR__ . '/../config');
+        } else {
+            $config = new Config($config);
         }
 
         $manager = $this->getImageManager($config['driver']);

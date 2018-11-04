@@ -1,5 +1,3 @@
-**THIS PACKAGE IS STILL IN DEVELOPMENT**
-
 # Image IIIF
 
 This package implements the [IIIF Image API 2.1](http://iiif.io/api/image/2.1/), it is unopinionated about implementation and many of the `MUST` features are not included because it does not include an actual implementation only the means to create one. I consider it a bring your own framework solution for implementing Image API 2.1 with PHP. The package utilizes the [Intervention Image](http://image.intervention.io/) package for manipulations. I have provided Intervention filters for each of the 5 IIIF parameters that can be used independently of the `$factory()->load()->withParameters()` pipeline methods. I have also provided Regex within config for validation of image request parameters.

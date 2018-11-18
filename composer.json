@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "hassankhan/config": "^1.0",
+        "hassankhan/config": "^2.0",
         "intervention/image": "^2.4"
     },
     "require-dev": {

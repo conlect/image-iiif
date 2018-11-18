@@ -4,7 +4,7 @@ return [
 
     'driver' => 'gd', //imagick
 
-    'base_url' => 'http://packages.test',
+    'base_url' => 'http://iiif.test',
 
     'prefix' => 'iiif',
 

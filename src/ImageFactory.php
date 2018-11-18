@@ -3,6 +3,7 @@
 namespace Conlect\ImageIIIF;
 
 use Noodlehaus\Config;
+use Noodlehaus\Parser\Json;
 use Intervention\Image\ImageManager;
 
 class ImageFactory
@@ -14,19 +15,20 @@ class ImageFactory
      */
     protected $driver = 'gd';
 
+    protected $config;
 
-   public function __invoke(array $config = null)
-   {
+    public function __invoke(array $config = null)
+    {
         if (is_null($config)) {
-           $config = new Config(__DIR__ . '/../config');
+            $config = new Config(__DIR__ . '/../config');
         } else {
-            $config = new Config($config);
+            $config = new Config(json_encode($config), new Json, true);
         }
 
         $manager = $this->getImageManager($config['driver']);
 
         return new ImageIIIF($manager, $config);
-   }
+    }
 
 
     /**
@@ -34,7 +36,7 @@ class ImageFactory
      * @return ImageManager
      */
     public function getImageManager($driver = null)
-    {
+    {        
         if (is_null($driver)) {
             $driver = $this->driver;
         }
@@ -45,5 +47,4 @@ class ImageFactory
             ]
         );
     }
-
 }

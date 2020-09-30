@@ -59,9 +59,6 @@ Route::get('iiif/{identifier}/info.json',
 <br>
 
 **Todo:**
-- utilize [php-vips](https://github.com/jcupitt/php-vips) or create second libvips implemetation
-- setup demo / documentation site
-- Laravel and Slim demo applications
 - figure out how to handle bitonal 1-bit images
 - support more formats (tif, pdf)
 - support optional "sizes" within info.json

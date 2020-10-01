@@ -20,7 +20,7 @@ class ImageIIIF
     }
 
     public function load($file)
-    {   
+    {
         $this->image = $this->manager->make($file);
 
         return $this;
@@ -55,7 +55,8 @@ class ImageIIIF
     {
         return [
             '@context' => 'http://iiif.io/api/image/2/context.json',
-            '@id' => $this->config['base_url'] . '/' . $this->config['prefix'] . '/' . $identifier,
+            'id' => $this->config['base_url'] . '/' . $this->config['prefix'] . '/' . $identifier,
+            'type' => 'ImageService3',
             'protocol' => 'http://iiif.io/api/image',
             'height' => $this->image->height(),
             'width' => $this->image->width(),

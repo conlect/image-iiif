@@ -16,13 +16,13 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "hassankhan/config": "^2.0",
-        "intervention/image": "^2.4"
+        "php": "^7.3",
+        "hassankhan/config": "^2.1",
+        "intervention/image": "^2.5"
     },
     "require-dev": {
-        "larapack/dd": "^1.0",
-        "phpunit/phpunit": "^7.0"
+        "larapack/dd": "^1.1",
+        "phpunit/phpunit": "^9.3"
     },
     "autoload": {
         "psr-4": {

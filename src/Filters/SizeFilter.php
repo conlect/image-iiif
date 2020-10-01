@@ -35,7 +35,7 @@ class SizeFilter implements FilterInterface
         // w,h	    The width and height of the returned image are exactly w and h. The aspect ratio of the returned image may be different than the extracted region, resulting in a distorted image.
         // !w,h	    The image content is scaled for the best fit such that the resulting width and height are less than or equal to the requested width and height. The exact scaling may be determined by the service provider, based on characteristics including image quality and system performance. The dimensions of the returned image content are calculated to maintain the aspect ratio of the extracted region.
 
-        if (in_array($this->options[0], ['full', 'max'])) {
+        if (in_array($this->options[0], ['max'])) {
             return $image;
         }
 

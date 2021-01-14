@@ -40,7 +40,8 @@ class QualityFilter implements FilterInterface
         }
 
         if ($this->quality === 'bitonal') {
-            return $image->encode('bmp');
+            return $image->limitColors(2);
+            // return $image->greyscale()->mask($image->contrast(20)->limitColors(2), false)->limitColors(2);
         }
     }
 }

@@ -11,7 +11,7 @@ class ImageIIIF
 
     protected $config;
 
-    protected $image;
+    public $image;
 
     public function __construct(ImageManager $manager, Config $config = null)
     {
@@ -58,21 +58,18 @@ class ImageIIIF
             'id' => $this->config['base_url'] . '/' . $this->config['prefix'] . '/' . $identifier,
             'type' => 'ImageService3',
             'protocol' => 'http://iiif.io/api/image',
+            'profile' => 'level2',
             'height' => $this->image->height(),
             'width' => $this->image->width(),
-            'profile' => [
-                'http://iiif.io/api/image/2/level2.json', [
-                    'supports' => $this->config['supports'],
-                    'qualities' => $this->config['qualities'],
-                    'formats' => $this->config['formats']
-                ]
-            ],
             'tiles'=> [
                 [
                     'width' => $this->config['tile_width'],
                     'scaleFactors' => $this->getScaleFactors(),
                 ]
             ],
+            'extraFormats' => $this->config['formats'],
+            'extraQualities' => $this->config['qualities'],
+            'extraFeatures' => $this->config['supports']
         ];
     }
 

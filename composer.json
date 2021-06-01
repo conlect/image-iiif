@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": ">=7.3",
         "hassankhan/config": "^2.1",
         "intervention/image": "^2.5"
     },

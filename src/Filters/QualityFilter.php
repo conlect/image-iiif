@@ -40,7 +40,11 @@ class QualityFilter implements FilterInterface
         }
 
         if ($this->quality === 'bitonal') {
-            return $image->limitColors(2);
+            // return $image->limitColors(2);
+            if (config('iiif.driver') == 'imagick') {
+                $image->greyscale();
+                return $image->getCore()->posterizeimage(2, false);
+            }
         }
     }
 }

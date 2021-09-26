@@ -80,7 +80,7 @@ class ImageIIIF
             // 'size' => \Conlect\ImageIIIF\Validators\Size::class,
             // 'rotation' => \Conlect\ImageIIIF\Validators\Rotation::class,
             // 'quality' => \Conlect\ImageIIIF\Validators\Quality::class,
-            'format' => \Conlect\ImageIIIF\Validators\Format::class,
+            'format' => \Conlect\ImageIIIF\Validators\FormatValidator::class,
         ];
 
         foreach ($validators as $validator => $value) {

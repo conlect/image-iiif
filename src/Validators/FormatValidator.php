@@ -2,7 +2,6 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
-use Noodlehaus\Config;
 use Intervention\Image\Image;
 
 class FormatValidator
@@ -14,7 +13,7 @@ class FormatValidator
         $this->format = $format;
     }
 
-    public function fails(Config $config, Image $image)
+    public function fails($config, Image $image)
     {
         return in_array($this->format, $config['formats']);
     }

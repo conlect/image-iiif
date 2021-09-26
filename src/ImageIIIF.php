@@ -73,6 +73,29 @@ class ImageIIIF
         ];
     }
 
+    public function hasValidParameters(array $parameters)
+    {
+        $validators = [
+            // 'region' => \Conlect\ImageIIIF\Validators\Region::class,
+            // 'size' => \Conlect\ImageIIIF\Validators\Size::class,
+            // 'rotation' => \Conlect\ImageIIIF\Validators\Rotation::class,
+            // 'quality' => \Conlect\ImageIIIF\Validators\Quality::class,
+            'format' => \Conlect\ImageIIIF\Validators\Format::class,
+        ];
+
+        foreach ($validators as $validator => $value) {
+            if (!in_array($validator, array_keys($validators))) {
+                continue;
+            }
+
+            if ((new $validators[$validator]($this->config, $this->image))->fails($value)) {
+                return false;
+                break;
+            }
+        }
+        return true;
+    }
+
     protected function getScaleFactors()
     {
         $scaleFactors = [];

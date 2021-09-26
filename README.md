@@ -6,8 +6,8 @@ This package implements the [IIIF Image API 2.1](http://iiif.io/api/image/2.1/),
 - Region (full || square || x,y,w,h || pct:x,y,w,h)
 - Size (full || max || w, || ,h || pct:n || w,h || !w,h)
 - Rotation (n || !n)
-- Quality (color || gray || default)
-- Format (jpg || png || gif || webp)
+- Quality (color || gray || bitonal || default)
+- Format (jpg || tif || png || gif || webp)
 
 Supports the `info.json` response for an identifier.
 

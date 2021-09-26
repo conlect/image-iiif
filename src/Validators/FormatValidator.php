@@ -2,19 +2,13 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
+use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 use Intervention\Image\Image;
 
-class FormatValidator
+class FormatValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    private $format;
-
-    public function __construct($format)
+    public function fails($format)
     {
-        $this->format = $format;
-    }
-
-    public function fails($config, Image $image)
-    {
-        return in_array($this->format, $config['formats']);
+        return in_array($format, $this->config['formats']);
     }
 }

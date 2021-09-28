@@ -76,10 +76,10 @@ class ImageIIIF
     public function hasValidParameters(array $parameters)
     {
         $validators = [
-            'region' => \Conlect\ImageIIIF\Validators\Region::class,
-            'size' => \Conlect\ImageIIIF\Validators\Size::class,
-            'rotation' => \Conlect\ImageIIIF\Validators\Rotation::class,
-            'quality' => \Conlect\ImageIIIF\Validators\Quality::class,
+            'region' => \Conlect\ImageIIIF\Validators\RegionValidator::class,
+            'size' => \Conlect\ImageIIIF\Validators\SizeValidator::class,
+            'rotation' => \Conlect\ImageIIIF\Validators\RotationValidator::class,
+            'quality' => \Conlect\ImageIIIF\Validators\QualityValidator::class,
             'format' => \Conlect\ImageIIIF\Validators\FormatValidator::class,
         ];
 

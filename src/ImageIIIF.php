@@ -67,7 +67,7 @@ class ImageIIIF
                     'scaleFactors' => $this->getScaleFactors(),
                 ]
             ],
-            'extraFormats' => $this->config['formats'],
+            'extraFormats' => array_keys($this->config['mime']),
             'extraQualities' => $this->config['qualities'],
             'extraFeatures' => $this->config['supports']
         ];
@@ -76,18 +76,14 @@ class ImageIIIF
     public function hasValidParameters(array $parameters)
     {
         $validators = [
-            // 'region' => \Conlect\ImageIIIF\Validators\Region::class,
-            // 'size' => \Conlect\ImageIIIF\Validators\Size::class,
-            // 'rotation' => \Conlect\ImageIIIF\Validators\Rotation::class,
-            // 'quality' => \Conlect\ImageIIIF\Validators\Quality::class,
+            'region' => \Conlect\ImageIIIF\Validators\Region::class,
+            'size' => \Conlect\ImageIIIF\Validators\Size::class,
+            'rotation' => \Conlect\ImageIIIF\Validators\Rotation::class,
+            'quality' => \Conlect\ImageIIIF\Validators\Quality::class,
             'format' => \Conlect\ImageIIIF\Validators\FormatValidator::class,
         ];
 
         foreach ($validators as $validator => $value) {
-            if (!in_array($validator, array_keys($validators))) {
-                continue;
-            }
-
             if ((new $validators[$validator]($this->config, $this->image))->fails($value)) {
                 return false;
                 break;

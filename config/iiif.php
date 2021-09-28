@@ -29,16 +29,6 @@ return [
         'rotation' => '!([0-2]?[0-9]{1,2}|3[0-5][0-9]|360)|([0-2]?[0-9]{1,2}|3[0-5][0-9]|360)',
     ],
 
-    'formats' => [
-        'jpg', // image/jpeg
-        'tif', // image/tiff
-        'png', // image/png
-        'gif', // image/gif
-        // 'jp2', // image/jp2
-        // 'pdf', // application/pdf
-        'webp', // image/webp
-    ],
-
     'mime' => [
         'jpg' => 'image/jpeg',
         'tif' => 'image/tiff',
@@ -56,7 +46,7 @@ return [
     'qualities' => [
         'color', // full color
         'gray', // grayscale
-        // 'bitonal', // each pixel is either black or white. (imagick only)
+        'bitonal', // each pixel is either black or white. (imagick only)
         'default', // default quality
     ],
 

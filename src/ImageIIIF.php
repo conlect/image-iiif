@@ -62,6 +62,10 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $value) {
+            if (!in_array($parameter, array_keys($validators))) {
+                continue;
+            }
+
             if ((new $validators[$parameter]($this->config, $this->image))->fails($value)) {
                 return false;
                 break;

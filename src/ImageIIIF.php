@@ -51,6 +51,25 @@ class ImageIIIF
         }
     }
 
+    public function hasValidParameters(array $parameters)
+    {
+        $validators = [
+            'region' => \Conlect\ImageIIIF\Validators\RegionValidator::class,
+            // 'size' => \Conlect\ImageIIIF\Validators\SizeValidator::class,
+            // 'rotation' => \Conlect\ImageIIIF\Validators\RotationValidator::class,
+            // 'quality' => \Conlect\ImageIIIF\Validators\QualityValidator::class,
+            // 'format' => \Conlect\ImageIIIF\Validators\FormatValidator::class,
+        ];
+
+        foreach ($parameters as $parameter => $value) {
+            if ((new $validators[$parameter]($this->config, $this->image))->fails($value)) {
+                return false;
+                break;
+            }
+        }
+        return true;
+    }
+
     public function info($identifier)
     {
         return [
@@ -71,25 +90,6 @@ class ImageIIIF
             'extraQualities' => $this->config['qualities'],
             'extraFeatures' => $this->config['supports']
         ];
-    }
-
-    public function hasValidParameters(array $parameters)
-    {
-        $validators = [
-            'region' => \Conlect\ImageIIIF\Validators\RegionValidator::class,
-            // 'size' => \Conlect\ImageIIIF\Validators\SizeValidator::class,
-            // 'rotation' => \Conlect\ImageIIIF\Validators\RotationValidator::class,
-            'quality' => \Conlect\ImageIIIF\Validators\QualityValidator::class,
-            'format' => \Conlect\ImageIIIF\Validators\FormatValidator::class,
-        ];
-
-        foreach ($validators as $validator => $value) {
-            if ((new $validators[$validator]($this->config, $this->image))->fails($value)) {
-                return false;
-                break;
-            }
-        }
-        return true;
     }
 
     protected function getScaleFactors()

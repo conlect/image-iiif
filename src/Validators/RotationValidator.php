@@ -9,6 +9,6 @@ class RotationValidator extends ValidatorAbstract implements ValidatorInterface
 {
     public function fails($rotation)
     {
-        return ! preg_match($this->config['regex']['rotation'], $rotation);
+        return preg_match($this->config['regex']['rotation'], $rotation) ? false : true;
     }
 }

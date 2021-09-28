@@ -9,7 +9,6 @@ class FormatValidator extends ValidatorAbstract implements ValidatorInterface
 {
     public function fails($format)
     {
-        var_dump($format);
         return in_array($format, array_keys($this->config['mime']));
     }
 }

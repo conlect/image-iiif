@@ -9,6 +9,6 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
 {
     public function fails($region)
     {
-        return ! preg_match($this->config['regex']['region'], $region);
+        return preg_match($this->config['regex']['region'], $region) ? false : true;
     }
 }

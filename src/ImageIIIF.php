@@ -77,8 +77,8 @@ class ImageIIIF
     {
         $validators = [
             'region' => \Conlect\ImageIIIF\Validators\RegionValidator::class,
-            'size' => \Conlect\ImageIIIF\Validators\SizeValidator::class,
-            'rotation' => \Conlect\ImageIIIF\Validators\RotationValidator::class,
+            // 'size' => \Conlect\ImageIIIF\Validators\SizeValidator::class,
+            // 'rotation' => \Conlect\ImageIIIF\Validators\RotationValidator::class,
             'quality' => \Conlect\ImageIIIF\Validators\QualityValidator::class,
             'format' => \Conlect\ImageIIIF\Validators\FormatValidator::class,
         ];

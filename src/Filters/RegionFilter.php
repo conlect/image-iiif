@@ -2,8 +2,8 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Image;
 
 class RegionFilter implements FilterInterface
 {
@@ -41,6 +41,7 @@ class RegionFilter implements FilterInterface
 
         if ($this->options[0] === 'square') {
             $fit = $width >= $height ? $width : $height;
+
             return $image->fit($fit, null, null, 'center');
         }
 

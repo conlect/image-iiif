@@ -2,8 +2,8 @@
 
 namespace Conlect\ImageIIIF;
 
-use Noodlehaus\Config;
 use Intervention\Image\ImageManager;
+use Noodlehaus\Config;
 
 class ImageIIIF
 {
@@ -43,7 +43,7 @@ class ImageIIIF
         $availableParameters = $this->config->get('parameters');
 
         foreach ($parameters as $parameter => $options) {
-            if (!in_array($parameter, array_keys($availableParameters))) {
+            if (! in_array($parameter, array_keys($availableParameters))) {
                 continue;
             }
 
@@ -62,15 +62,17 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $value) {
-            if (!in_array($parameter, array_keys($validators))) {
+            if (! in_array($parameter, array_keys($validators))) {
                 continue;
             }
 
             if ((new $validators[$parameter]($this->config, $this->image))->fails($value)) {
                 return false;
+
                 break;
             }
         }
+
         return true;
     }
 
@@ -84,15 +86,15 @@ class ImageIIIF
             'profile' => 'level2',
             'height' => $this->image->height(),
             'width' => $this->image->width(),
-            'tiles'=> [
+            'tiles' => [
                 [
                     'width' => $this->config['tile_width'],
                     'scaleFactors' => $this->getScaleFactors(),
-                ]
+                ],
             ],
             'extraFormats' => array_keys($this->config['mime']),
             'extraQualities' => $this->config['qualities'],
-            'extraFeatures' => $this->config['supports']
+            'extraFeatures' => $this->config['supports'],
         ];
     }
 
@@ -100,7 +102,7 @@ class ImageIIIF
     {
         $scaleFactors = [];
         $maxSize = max($this->image->width(), $this->image->height());
-        $total = (integer) ceil($maxSize / $this->config->get('tile_width'));
+        $total = (int) ceil($maxSize / $this->config->get('tile_width'));
         $factor = 1;
         while ($factor / 2 <= $total) {
             $scaleFactors[] = $factor;
@@ -109,6 +111,7 @@ class ImageIIIF
         if (count($scaleFactors) <= 1) {
             return;
         }
+
         return $scaleFactors;
     }
 }

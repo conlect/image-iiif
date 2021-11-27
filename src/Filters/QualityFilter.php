@@ -2,8 +2,8 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Image;
 
 class QualityFilter implements FilterInterface
 {

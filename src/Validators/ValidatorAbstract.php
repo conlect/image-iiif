@@ -2,8 +2,6 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
-use Intervention\Image\Image;
-
 abstract class ValidatorAbstract
 {
     protected $image;

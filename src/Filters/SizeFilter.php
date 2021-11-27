@@ -2,8 +2,8 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Image;
 
 class SizeFilter implements FilterInterface
 {
@@ -49,6 +49,7 @@ class SizeFilter implements FilterInterface
             $percent = substr($this->options[0], 4);
             $width = $image->width() * $percent / 100;
             $height = $image->height() * $percent / 100;
+
             return $image->resize($width, $height);
         }
 
@@ -58,7 +59,9 @@ class SizeFilter implements FilterInterface
         $height = isset($this->options[1]) && $this->options[1] !== '' ? $this->options[1] : null;
 
         return $image->resize(
-            $width, $height, function ($constraint) use ($constrainAspectRatio, $width, $height) {
+            $width,
+            $height,
+            function ($constraint) use ($constrainAspectRatio, $width, $height) {
                 if ($constrainAspectRatio || is_null($width) || is_null($height)) {
                     $constraint->aspectRatio();
                 }

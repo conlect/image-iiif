@@ -12,5 +12,4 @@ class RotationValidator extends ValidatorAbstract implements ValidatorInterface
 
         return preg_match($regex_rotation, $rotation) ? false : true;
     }
-
 }

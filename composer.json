@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
+        "php": ">=5.5.9",
         "hassankhan/config": "^2.1",
         "intervention/image": "^2.5"
     },
@@ -25,6 +25,11 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "larapack/dd": "^1.1",
         "phpunit/phpunit": "^9.3"
+    },
+    "suggest": {
+        "ext-gd": "to use GD library based image processing.",
+        "ext-imagick": "to use Imagick based image processing.",
+        "intervention/imagecache": "Caching extension for the Intervention Image library"
     },
     "autoload": {
         "psr-4": {
@@ -47,5 +52,7 @@
     },
     "config": {
         "sort-packages": true
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

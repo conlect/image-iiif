@@ -13,7 +13,8 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
         // support upscaling or 501 not supported
         // check max supported scale (add to config)
         // check not less than
+        $regex_size = '/^full$|^max$|,[0-9]+|[0-9]+,|{!}?[0-9]+,[0-9]+|pct:[0-9]+/';
 
-        return preg_match($this->config['regex']['size'], $rotation) ? false : true;
+        return preg_match($regex_size, $rotation) ? false : true;
     }
 }

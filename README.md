@@ -1,6 +1,6 @@
 # Image IIIF
 
-This package implements the [IIIF Image API 2.1](http://iiif.io/api/image/2.1/), it is unopinionated about implementation and many of the `MUST` features are not included because it does not include an actual implementation only the means to create one. I consider it a bring your own framework solution for implementing Image API 2.1 with PHP. The package utilizes the [Intervention Image](http://image.intervention.io/) package for manipulations. I have provided Intervention filters for each of the 5 IIIF parameters that can be used independently of the `$factory()->load()->withParameters()` pipeline methods. I have also provided Regex within config for validation of image request parameters.
+This package implements the [IIIF Image API 3.0](https://iiif.io/api/image/3.0/), it is unopinionated about implementation and many of the `MUST` features are not included because it does not include an actual implementation only the means to create one. I consider it a bring your own framework solution for implementing Image API 3.0 with PHP. The package utilizes the [Intervention Image](http://image.intervention.io/) package for manipulations. I have provided Intervention filters for each of the 5 IIIF parameters that can be used independently of the `$factory()->load()->withParameters()` pipeline methods. 
 
 **Supports all Image Request Parameters:**
 - Region (full || square || x,y,w,h || pct:x,y,w,h)
@@ -10,8 +10,6 @@ This package implements the [IIIF Image API 2.1](http://iiif.io/api/image/2.1/),
 - Format (jpg || tif || png || gif || webp)
 
 Supports the `info.json` response for an identifier.
-
-Currently only tested with 'GD' Libray. If utilizing 'Imagick' more config options may become available.
 
 
 #### Laravel image route example:
@@ -55,10 +53,3 @@ Route::get('iiif/{identifier}/info.json',
     }
 );
 ```
-
-<br>
-
-**Todo:**
-- figure out how to handle bitonal 1-bit images
-- support more formats (tif, pdf)
-- support optional "sizes" within info.json

@@ -7,7 +7,7 @@ use Intervention\Image\Image;
 
 class SizeValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    public function fails($rotation)
+    public function passes($rotation)
     {
         // check if not ^ that the image will not be upscaled
         // support upscaling or 501 not supported

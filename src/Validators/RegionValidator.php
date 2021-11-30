@@ -6,13 +6,16 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class RegionValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    protected $regex = '/^full$|^square$|[0-9]+,[0-9]+,[0-9]+,[0-9]+|pct:(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?/';
+    protected $regex = [
+        '^full$',
+        '^square$',
+        // '[0-9]+,[0-9]+,[1-9][0-9]+,[1-9][0-9]+',
+        // 'pct:(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?/)',
+    ];
 
-    public function fails($region)
+    public function passes($value)
     {
-        // check for zero
-        // check if region is outside bounds
-
-        return preg_match($this->regex, $region) ? false : true;
+        $all_regex = implode('|', $this->regex);
+        return preg_match('/' . $all_regex . '/', $value) ? true : false;
     }
 }

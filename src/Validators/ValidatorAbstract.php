@@ -4,11 +4,8 @@ namespace Conlect\ImageIIIF\Validators;
 
 abstract class ValidatorAbstract
 {
-    protected $image;
-
-    public function __construct($config, $image)
+    public function __construct($config)
     {
         $this->config = $config;
-        $this->image = $image;
     }
 }

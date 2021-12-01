@@ -15,7 +15,17 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
 
     public function passes($value)
     {
+        $options = explode(',', $value);
+
+        if (in_array($options[0], ['full', 'square'])) {
+            return true;
+        }
+        if (count($options) == 4 && ($options[2] == 0 || $options[3] == 0)) {
+            return false;
+        }
+
         $all_regex = implode('|', $this->regex);
         return preg_match('/' . $all_regex . '/', $value) ? true : false;
     }
+
 }

@@ -3,9 +3,9 @@
 
 # Ignore all test and documentation with "export-ignore".
 /.gitattributes     export-ignore
+/.github            export-ignore
 /.gitignore         export-ignore
 /phpunit.xml.dist   export-ignore
 /tests              export-ignore
 /.editorconfig      export-ignore
 /.php_cs            export-ignore
-/.github            export-ignore

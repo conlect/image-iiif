@@ -25,7 +25,7 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
         }
 
         $all_regex = implode('|', $this->regex);
+
         return preg_match('/' . $all_regex . '/', $value) ? true : false;
     }
-
 }

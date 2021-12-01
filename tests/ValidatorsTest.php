@@ -3,8 +3,8 @@
 namespace Conlect\ImageIIIF\Tests;
 
 use Conlect\ImageIIIF\Validators\RegionValidator;
-use PHPUnit\Framework\TestCase;
 use Noodlehaus\Config;
+use PHPUnit\Framework\TestCase;
 
 class ValidatorsTest extends TestCase
 {
@@ -33,5 +33,5 @@ class ValidatorsTest extends TestCase
         $this->assertFalse($regionValidator->passes('pct:41,7,0,0'));
         $this->assertFalse($regionValidator->passes('pct:41,7,0,20'));
         $this->assertFalse($regionValidator->passes('pct:41,7,20,0'));
-    }  
+    }
 }

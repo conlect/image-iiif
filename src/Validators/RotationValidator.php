@@ -6,10 +6,13 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class RotationValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    public function passes($rotation)
+    public function passes($value)
     {
-        $regex_rotation = '!([0-2]?[0-9]{1,2}|3[0-5][0-9]|360)|([0-2]?[0-9]{1,2}|3[0-5][0-9]|360)';
+        if (strpos($value, '!') !== false) {
+            $value = preg_replace('/!/', '', $value);
+            return (int)$value >= 0 && (int)$value <= 360;
+        }
 
-        return preg_match($regex_rotation, $rotation) ? false : true;
+        return (int)$value >= 0 && (int)$value <= 360;
     }
 }

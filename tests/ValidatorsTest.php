@@ -3,6 +3,7 @@
 namespace Conlect\ImageIIIF\Tests;
 
 use Conlect\ImageIIIF\Validators\RegionValidator;
+use Conlect\ImageIIIF\Validators\RotationValidator;
 use Conlect\ImageIIIF\Validators\SizeValidator;
 use Noodlehaus\Config;
 use PHPUnit\Framework\TestCase;
@@ -72,5 +73,27 @@ class ValidatorsTest extends TestCase
         $this->assertTrue($sizeValidator->passes('!20,20'));
         // !^w,h
         $this->assertTrue($sizeValidator->passes('!^2000,2000'));
+    }
+
+    /** @test */
+    public function it_validates_rotation()
+    {
+        $config = new Config(__DIR__ . '/../config');
+        $rotationValidator = new RotationValidator($config);
+
+        // n
+        $this->assertTrue($rotationValidator->passes('0'));
+        $this->assertTrue($rotationValidator->passes('90'));
+        $this->assertTrue($rotationValidator->passes('180'));
+        $this->assertTrue($rotationValidator->passes('360'));
+        $this->assertFalse($rotationValidator->passes('363'));
+        $this->assertFalse($rotationValidator->passes('-90'));
+        // !n
+        $this->assertTrue($rotationValidator->passes('!0'));
+        $this->assertTrue($rotationValidator->passes('!90'));
+        $this->assertTrue($rotationValidator->passes('!180'));
+        $this->assertTrue($rotationValidator->passes('!360'));
+        // $this->assertFalse($rotationValidator->passes('!363'));
+        $this->assertFalse($rotationValidator->passes('!-90'));
     }
 }

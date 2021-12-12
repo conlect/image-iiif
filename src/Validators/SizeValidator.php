@@ -27,7 +27,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
 
         if (strpos($value, 'pct:') !== false) {
             $percent = preg_replace('/^pct:/', '', $value);
-            return (int)$percent >= 1 && (int)$percent <= 100 ;
+            return (int)$percent >= 1 && (int)$percent <= 100;
         }
 
         $all_regex = implode('|', $this->regex);

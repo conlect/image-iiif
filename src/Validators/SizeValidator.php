@@ -6,15 +6,31 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 use Intervention\Image\Image;
 
 class SizeValidator extends ValidatorAbstract implements ValidatorInterface
-{
-    public function passes($rotation)
-    {
-        // check if not ^ that the image will not be upscaled
-        // support upscaling or 501 not supported
-        // check max supported scale (add to config)
-        // check not less than
-        $regex_size = '/^full$|^max$|,[0-9]+|[0-9]+,|{!}?[0-9]+,[0-9]+|pct:[0-9]+/';
+{   
+    protected $regex = [
+        '^max$',
+        '^\^max$',
+        ',[0-9]+',
+        '\^,[0-9]+',
+        '[0-9]+,',
+        '\^[0-9]+,',
+        '{!}?[0-9]+,[0-9]+',
+        'pct:[0-9]+',
+    ];
 
-        return preg_match($regex_size, $rotation) ? false : true;
+    public function passes($value)
+    {
+        if (strpos($value, '^pct:') !== false) {
+            $percent = preg_replace('/^\^pct:/', '', $value);
+            return (int)$percent >= 1;
+        }
+
+        if (strpos($value, 'pct:') !== false) {
+            $percent = preg_replace('/^pct:/', '', $value);
+            return (int)$percent >= 1 && (int)$percent <= 100 ;
+        }
+
+        $all_regex = implode('|', $this->regex);
+        return preg_match('/' . $all_regex . '/', $value) ? true : false;
     }
 }

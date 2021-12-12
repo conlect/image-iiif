@@ -83,6 +83,7 @@ class ValidatorsTest extends TestCase
 
         // n
         $this->assertTrue($rotationValidator->passes('0'));
+        $this->assertTrue($rotationValidator->passes('22.5'));
         $this->assertTrue($rotationValidator->passes('90'));
         $this->assertTrue($rotationValidator->passes('180'));
         $this->assertTrue($rotationValidator->passes('360'));
@@ -90,6 +91,7 @@ class ValidatorsTest extends TestCase
         $this->assertFalse($rotationValidator->passes('-90'));
         // !n
         $this->assertTrue($rotationValidator->passes('!0'));
+        $this->assertTrue($rotationValidator->passes('!22.5'));
         $this->assertTrue($rotationValidator->passes('!90'));
         $this->assertTrue($rotationValidator->passes('!180'));
         $this->assertTrue($rotationValidator->passes('!360'));

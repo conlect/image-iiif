@@ -10,6 +10,7 @@ class RotationValidator extends ValidatorAbstract implements ValidatorInterface
     {
         if (strpos($value, '!') !== false) {
             $value = preg_replace('/!/', '', $value);
+
             return (int)$value >= 0 && (int)$value <= 360;
         }
 

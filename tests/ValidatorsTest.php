@@ -2,6 +2,7 @@
 
 namespace Conlect\ImageIIIF\Tests;
 
+use Conlect\ImageIIIF\Validators\QualityValidator;
 use Conlect\ImageIIIF\Validators\RegionValidator;
 use Conlect\ImageIIIF\Validators\RotationValidator;
 use Conlect\ImageIIIF\Validators\SizeValidator;
@@ -97,5 +98,22 @@ class ValidatorsTest extends TestCase
         $this->assertTrue($rotationValidator->passes('!360'));
         // $this->assertFalse($rotationValidator->passes('!363'));
         $this->assertFalse($rotationValidator->passes('!-90'));
+    }
+
+    /** @test */
+    public function it_validates_quality()
+    {
+        $config = new Config(__DIR__ . '/../config');
+        $qualityValidator = new QualityValidator($config);
+
+        $this->assertTrue($qualityValidator->passes('color'));
+        $this->assertTrue($qualityValidator->passes('gray'));
+        $this->assertTrue($qualityValidator->passes('bitonal'));
+        $this->assertTrue($qualityValidator->passes('default'));
+
+        $this->assertFalse($qualityValidator->passes('colour'));
+        $this->assertFalse($qualityValidator->passes('grey'));
+        $this->assertFalse($qualityValidator->passes('bytonal'));
+        $this->assertFalse($qualityValidator->passes('dabears'));
     }
 }

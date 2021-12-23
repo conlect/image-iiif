@@ -2,6 +2,7 @@
 
 namespace Conlect\ImageIIIF\Tests;
 
+use Conlect\ImageIIIF\Validators\FormatValidator;
 use Conlect\ImageIIIF\Validators\QualityValidator;
 use Conlect\ImageIIIF\Validators\RegionValidator;
 use Conlect\ImageIIIF\Validators\RotationValidator;
@@ -115,5 +116,20 @@ class ValidatorsTest extends TestCase
         $this->assertFalse($qualityValidator->passes('grey'));
         $this->assertFalse($qualityValidator->passes('bytonal'));
         $this->assertFalse($qualityValidator->passes('dabears'));
+    }
+
+    /** @test */
+    public function it_validates_format()
+    {
+        $config = new Config(__DIR__ . '/../config');
+        $formatValidator = new FormatValidator($config);
+
+        $this->assertTrue($formatValidator->passes('jpg'));
+        $this->assertTrue($formatValidator->passes('tif'));
+        $this->assertTrue($formatValidator->passes('png'));
+        $this->assertTrue($formatValidator->passes('gif'));
+        $this->assertTrue($formatValidator->passes('jp2'));
+        $this->assertTrue($formatValidator->passes('pdf'));
+        $this->assertTrue($formatValidator->passes('webp'));
     }
 }

@@ -13,7 +13,7 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
         'pct:(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?',
     ];
 
-    public function passes($value)
+    public function validate($value)
     {
         $options = explode(',', $value);
 

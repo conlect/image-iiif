@@ -6,7 +6,7 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class QualityValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    public function passes($quality)
+    public function validate($quality)
     {
         return in_array($quality, $this->config['qualities']);
     }

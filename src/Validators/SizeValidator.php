@@ -17,7 +17,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
         'pct:[0-9]+',
     ];
 
-    public function passes($value)
+    public function validate($value)
     {
         if (strpos($value, '^pct:') !== false) {
             $percent = preg_replace('/^\^pct:/', '', $value);

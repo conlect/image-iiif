@@ -2,7 +2,7 @@
 
 namespace Conlect\ImageIIIF\Exceptions;
 
-class HttpException extends \RuntimeException implements ExceptionInterface
+class BaseException extends \RuntimeException implements ExceptionInterface
 {
     private int $statusCode;
 

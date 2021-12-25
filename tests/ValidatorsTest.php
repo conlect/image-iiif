@@ -13,33 +13,6 @@ use PHPUnit\Framework\TestCase;
 class ValidatorsTest extends TestCase
 {
     /** @test */
-    public function it_validates_region()
-    {
-        $config = new Config(__DIR__ . '/../config');
-        $regionValidator = new RegionValidator($config);
-        $this->assertTrue($regionValidator->validate('full'));
-        $this->assertFalse($regionValidator->validate('ful'));
-        $this->assertFalse($regionValidator->validate('fulll'));
-
-        $this->assertTrue($regionValidator->validate('square'));
-        $this->assertFalse($regionValidator->validate('squares'));
-
-        $this->assertTrue($regionValidator->validate('125,15,120,140'));
-        $this->assertTrue($regionValidator->validate('125,15,200,200'));
-
-        $this->assertTrue($regionValidator->validate('pct:41.6,7.5,40,70'));
-        $this->assertTrue($regionValidator->validate('pct:41.6,7.5,66.6,100'));
-
-        $this->assertFalse($regionValidator->validate('125,15,0,0'));
-        $this->assertFalse($regionValidator->validate('125,15,20,0'));
-        $this->assertFalse($regionValidator->validate('125,15,0,20'));
-
-        $this->assertFalse($regionValidator->validate('pct:41,7,0,0'));
-        $this->assertFalse($regionValidator->validate('pct:41,7,0,20'));
-        $this->assertFalse($regionValidator->validate('pct:41,7,20,0'));
-    }
-
-    /** @test */
     public function it_validates_size()
     {
         $config = new Config(__DIR__ . '/../config');

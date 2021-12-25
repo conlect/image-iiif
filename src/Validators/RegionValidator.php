@@ -7,13 +7,6 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class RegionValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    protected $regex = [
-        '^full$',
-        '^square$',
-        '[0-9]+,[0-9]+,[1-9][0-9]+,[1-9][0-9]+',
-        'pct:(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?,(\d{0,2})(\.\d{1,10})?',
-    ];
-
     public function validate($value)
     {
         $options = explode(',', $value);
@@ -22,16 +15,16 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
             return true;
         }
 
-        if (str_contains($options[0], ':') && !str_starts_with($options[0], 'pct:')) {
-            throw new BadRequestException("Region $value is invalid.");     
+        if (str_contains($options[0], ':') && ! str_starts_with($options[0], 'pct:')) {
+            return $this->valueException($value);
         }
 
         if (count($options) !== 4) {
-            throw new BadRequestException("Region $value is invalid.");
+            return $this->valueException($value);
         }
 
         if ($options[2] == 0 || $options[3] == 0) {
-            throw new BadRequestException('Region width and height should be greater than zero.');
+            return $this->zeroException();
         }
 
         if (str_starts_with($options[0], 'pct:')) {
@@ -41,5 +34,15 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
         if (4 === count(array_filter($options, 'is_numeric'))) {
             return true;
         }
+    }
+
+    protected function valueException($value)
+    {
+        throw new BadRequestException("Region $value is invalid.");
+    }
+
+    protected function zeroException()
+    {
+        throw new BadRequestException('Region width and height should be greater than zero.');
     }
 }

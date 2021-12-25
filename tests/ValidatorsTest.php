@@ -4,7 +4,6 @@ namespace Conlect\ImageIIIF\Tests;
 
 use Conlect\ImageIIIF\Validators\FormatValidator;
 use Conlect\ImageIIIF\Validators\QualityValidator;
-use Conlect\ImageIIIF\Validators\RegionValidator;
 use Conlect\ImageIIIF\Validators\RotationValidator;
 use Conlect\ImageIIIF\Validators\SizeValidator;
 use Noodlehaus\Config;

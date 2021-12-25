@@ -89,19 +89,4 @@ class ValidatorsTest extends TestCase
         $this->assertFalse($qualityValidator->validate('bytonal'));
         $this->assertFalse($qualityValidator->validate('dabears'));
     }
-
-    /** @test */
-    public function it_validates_format()
-    {
-        $config = new Config(__DIR__ . '/../config');
-        $formatValidator = new FormatValidator($config);
-
-        $this->assertTrue($formatValidator->validate('jpg'));
-        $this->assertTrue($formatValidator->validate('tif'));
-        $this->assertTrue($formatValidator->validate('png'));
-        $this->assertTrue($formatValidator->validate('gif'));
-        $this->assertTrue($formatValidator->validate('jp2'));
-        $this->assertTrue($formatValidator->validate('pdf'));
-        $this->assertTrue($formatValidator->validate('webp'));
-    }
 }

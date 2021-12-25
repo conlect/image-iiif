@@ -34,6 +34,8 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
         if (4 === count(array_filter($options, 'is_numeric'))) {
             return true;
         }
+
+        return $this->valueException($value);
     }
 
     protected function valueException($value)

@@ -55,6 +55,17 @@ class RegionValidatorTest extends TestCase
     }
 
     /** @test */
+    public function it_non_numeric_throws_exception()
+    {
+        $region = '125,15,hello,200';
+        $regionValidator = new RegionValidator([]);
+        $this->expectException(BadRequestException::class);
+        $this->expectExceptionCode(400);
+        $this->expectExceptionMessage("Region $region is invalid.");
+        $valid = $regionValidator->validate($region);
+    }
+
+    /** @test */
     public function it_wrong_pct_throws_exception()
     {
         $region = 'pc:41.6,7.5,40,70';

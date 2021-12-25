@@ -22,8 +22,8 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
             return true;
         }
 
-        if (str_contains($options[0], ':') && !str_starts_with($options[0], 'pct:')) {
-            throw new BadRequestException("Region $value is invalid.");     
+        if (str_contains($options[0], ':') && ! str_starts_with($options[0], 'pct:')) {
+            throw new BadRequestException("Region $value is invalid.");
         }
 
         if (count($options) !== 4) {

@@ -2,6 +2,7 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
+use Conlect\ImageIIIF\Exceptions\BadRequestException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class SizeValidator extends ValidatorAbstract implements ValidatorInterface
@@ -14,25 +15,34 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
         '[0-9]+,',
         '\^[0-9]+,',
         '{!}?[0-9]+,[0-9]+',
-        'pct:[0-9]+',
     ];
 
     public function validate($value)
     {
-        if (strpos($value, '^pct:') !== false) {
-            $percent = preg_replace('/^\^pct:/', '', $value);
+        $startValue = $value;
 
-            return (int)$percent >= 1;
+        if (strpos($value, '^pct:') !== false) {
+            $value = preg_replace('/^\^pct:/', '', $value);
+
+            if ((int)$value >= 1) {
+                return true;
+            }
         }
 
         if (strpos($value, 'pct:') !== false) {
-            $percent = preg_replace('/^pct:/', '', $value);
+            $value = preg_replace('/^pct:/', '', $value);
 
-            return (int)$percent >= 1 && (int)$percent <= 100;
+            if ((int)$value >= 1 && (int)$value <= 100) {
+                return true;
+            }
         }
 
         $all_regex = implode('|', $this->regex);
 
-        return preg_match('/' . $all_regex . '/', $value) ? true : false;
+        if (preg_match('/' . $all_regex . '/', $value)) {
+            return true;
+        }
+
+        throw new BadRequestException("Size $startValue is invalid.");
     }
 }

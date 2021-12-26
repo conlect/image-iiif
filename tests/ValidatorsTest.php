@@ -2,9 +2,6 @@
 
 namespace Conlect\ImageIIIF\Tests;
 
-use Conlect\ImageIIIF\Validators\FormatValidator;
-use Conlect\ImageIIIF\Validators\QualityValidator;
-use Conlect\ImageIIIF\Validators\RotationValidator;
 use Conlect\ImageIIIF\Validators\SizeValidator;
 use Noodlehaus\Config;
 use PHPUnit\Framework\TestCase;
@@ -47,46 +44,5 @@ class ValidatorsTest extends TestCase
         $this->assertTrue($sizeValidator->validate('!20,20'));
         // !^w,h
         $this->assertTrue($sizeValidator->validate('!^2000,2000'));
-    }
-
-    /** @test */
-    public function it_validates_rotation()
-    {
-        $config = new Config(__DIR__ . '/../config');
-        $rotationValidator = new RotationValidator($config);
-
-        // n
-        $this->assertTrue($rotationValidator->validate('0'));
-        $this->assertTrue($rotationValidator->validate('22.5'));
-        $this->assertTrue($rotationValidator->validate('90'));
-        $this->assertTrue($rotationValidator->validate('180'));
-        $this->assertTrue($rotationValidator->validate('360'));
-        $this->assertFalse($rotationValidator->validate('363'));
-        $this->assertFalse($rotationValidator->validate('-90'));
-        // !n
-        $this->assertTrue($rotationValidator->validate('!0'));
-        $this->assertTrue($rotationValidator->validate('!22.5'));
-        $this->assertTrue($rotationValidator->validate('!90'));
-        $this->assertTrue($rotationValidator->validate('!180'));
-        $this->assertTrue($rotationValidator->validate('!360'));
-        // $this->assertFalse($rotationValidator->validate('!363'));
-        $this->assertFalse($rotationValidator->validate('!-90'));
-    }
-
-    /** @test */
-    public function it_validates_quality()
-    {
-        $config = new Config(__DIR__ . '/../config');
-        $qualityValidator = new QualityValidator($config);
-
-        $this->assertTrue($qualityValidator->validate('color'));
-        $this->assertTrue($qualityValidator->validate('gray'));
-        $this->assertTrue($qualityValidator->validate('bitonal'));
-        $this->assertTrue($qualityValidator->validate('default'));
-
-        $this->assertFalse($qualityValidator->validate('colour'));
-        $this->assertFalse($qualityValidator->validate('grey'));
-        $this->assertFalse($qualityValidator->validate('bytonal'));
-        $this->assertFalse($qualityValidator->validate('dabears'));
     }
 }

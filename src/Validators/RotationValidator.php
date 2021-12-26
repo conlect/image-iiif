@@ -2,18 +2,25 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
+use Conlect\ImageIIIF\Exceptions\BadRequestException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class RotationValidator extends ValidatorAbstract implements ValidatorInterface
 {
     public function validate($value)
     {
-        if (strpos($value, '!') !== false) {
-            $value = preg_replace('/!/', '', $value);
+        $startValue = $value;
+        $value = preg_replace('/!/', '', $value);
 
-            return (int)$value >= 0 && (int)$value <= 360;
+        if ($this->is_in_Range($value)) {
+            return true;
         }
 
-        return (int)$value >= 0 && (int)$value <= 360;
+        throw new BadRequestException("Rotation $startValue is invalid.");
+    }
+
+    protected function is_in_range($value, $min = 0, $max = 360)
+    {
+        return (int)$value >= $min && (int)$value <= $max;
     }
 }

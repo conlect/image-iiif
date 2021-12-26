@@ -2,12 +2,17 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
+use Conlect\ImageIIIF\Exceptions\BadRequestException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class QualityValidator extends ValidatorAbstract implements ValidatorInterface
 {
     public function validate($quality)
     {
-        return in_array($quality, $this->config['qualities']);
+        if (in_array($quality, $this->config['qualities'])) {
+            return true;
+        }
+
+        throw new BadRequestException("Quality $quality is invalid.");
     }
 }

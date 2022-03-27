@@ -40,14 +40,20 @@ class ImageIIIF
 
     protected function applyParameters(array $parameters)
     {
-        $availableParameters = $this->config->get('parameters');
+        $iiifParameters = [
+            'region' => \Conlect\ImageIIIF\Parameters\Region::class,
+            'size' => \Conlect\ImageIIIF\Parameters\Size::class,
+            'rotation' => \Conlect\ImageIIIF\Parameters\Rotation::class,
+            'quality' => \Conlect\ImageIIIF\Parameters\Quality::class,
+            'format' => \Conlect\ImageIIIF\Parameters\Format::class,
+        ];
 
         foreach ($parameters as $parameter => $options) {
-            if (! in_array($parameter, array_keys($availableParameters))) {
+            if (! in_array($parameter, array_keys($iiifParameters))) {
                 continue;
             }
 
-            $this->image = (new $availableParameters[$parameter]($this->image))->apply($options);
+            $this->image = (new $iiifParameters[$parameter]($this->image))->apply($options);
         }
     }
 

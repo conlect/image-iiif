@@ -8,6 +8,8 @@ use Intervention\Image\Image;
 class RegionFilter implements FilterInterface
 {
     private $options;
+    private $width;
+    private $height;
 
     /**
      * Creates new instance of filter
@@ -36,13 +38,11 @@ class RegionFilter implements FilterInterface
             return $image;
         }
 
-        $height = $image->height();
-        $width = $image->width();
+        $this->width = $image->width();
+        $this->height = $image->height();
 
         if ($this->options[0] === 'square') {
-            $fit = $width >= $height ? $width : $height;
-
-            return $image->fit($fit, null, null, 'center');
+            return $image->fit($this->get_fit($this->width, $this->height), null, null, 'center');
         }
 
         if (strpos($this->options[0], 'pct:') === false) {
@@ -52,12 +52,12 @@ class RegionFilter implements FilterInterface
             $w = $this->options[2];
             $h = $this->options[3];
 
-            if (($x + $w) > $width) {
-                $w = $w - (($x + $w) - $width);
+            if (($x + $w) > $this->width) {
+                $w = $w - (($x + $w) - $this->width);
             }
 
-            if (($y + $h) > $height) {
-                $h = $h - (($y + $h) - $height);
+            if (($y + $h) > $this->height) {
+                $h = $h - (($y + $h) - $this->height);
             }
 
             // intervention - w,h,x,y
@@ -65,20 +65,26 @@ class RegionFilter implements FilterInterface
         }
 
         // iiif - x,y,w,h
-        $x = (int) round($width * substr($this->options[0], 4) / 100);
-        $y = (int) round($height * $this->options[1] / 100);
-        $w = (int) round($width * $this->options[2] / 100);
-        $h = (int) round($height * $this->options[3] / 100);
+        $x = (int) round($this->width * substr($this->options[0], 4) / 100);
+        $y = (int) round($this->height * $this->options[1] / 100);
+        $w = (int) round($this->width * $this->options[2] / 100);
+        $h = (int) round($this->height * $this->options[3] / 100);
 
         if ($this->options[2] + substr($this->options[0], 4) > 100) {
-            $w = $width - $x;
+            $w = $this->width - $x;
         }
 
         if ($this->options[3] + $this->options[1] > 100) {
-            $h = $height - $y;
+            $h = $this->height - $y;
         }
 
         // intervention - w,h,x,y
         return $image->crop($w, $h, $x, $y);
+    }
+
+
+    protected function get_fit($width, $height)
+    {
+        return $width >= $height ? $width : $height;
     }
 }

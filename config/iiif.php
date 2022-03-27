@@ -4,7 +4,7 @@ return [
 
     'driver' => 'gd', // or imagick
 
-    'base_url' => 'http://iiif.test',
+    'base_url' => 'https://iiif.test',
 
     'prefix' => 'iiif',
 
@@ -13,14 +13,6 @@ return [
     'tile_width' => 1024,
 
     'quality' => 90,
-
-    'parameters' => [
-        'region' => \Conlect\ImageIIIF\Parameters\Region::class,
-        'size' => \Conlect\ImageIIIF\Parameters\Size::class,
-        'rotation' => \Conlect\ImageIIIF\Parameters\Rotation::class,
-        'quality' => \Conlect\ImageIIIF\Parameters\Quality::class,
-        'format' => \Conlect\ImageIIIF\Parameters\Format::class,
-    ],
 
     'mime' => [
         'jpg' => 'image/jpeg',

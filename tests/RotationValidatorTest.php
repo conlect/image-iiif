@@ -13,16 +13,16 @@ class RotationValidatorTest extends TestCase
     {
         $rotationValidator = new RotationValidator([]);
 
-        $this->assertTrue($rotationValidator->validate('0'));
-        $this->assertTrue($rotationValidator->validate('22.5'));
-        $this->assertTrue($rotationValidator->validate('90'));
-        $this->assertTrue($rotationValidator->validate('180'));
-        $this->assertTrue($rotationValidator->validate('360'));
-        $this->assertTrue($rotationValidator->validate('!0'));
-        $this->assertTrue($rotationValidator->validate('!22.5'));
-        $this->assertTrue($rotationValidator->validate('!90'));
-        $this->assertTrue($rotationValidator->validate('!180'));
-        $this->assertTrue($rotationValidator->validate('!360'));
+        $this->assertTrue($rotationValidator->valid('0'));
+        $this->assertTrue($rotationValidator->valid('22.5'));
+        $this->assertTrue($rotationValidator->valid('90'));
+        $this->assertTrue($rotationValidator->valid('180'));
+        $this->assertTrue($rotationValidator->valid('360'));
+        $this->assertTrue($rotationValidator->valid('!0'));
+        $this->assertTrue($rotationValidator->valid('!22.5'));
+        $this->assertTrue($rotationValidator->valid('!90'));
+        $this->assertTrue($rotationValidator->valid('!180'));
+        $this->assertTrue($rotationValidator->valid('!360'));
     }
 
     /** @test */
@@ -33,7 +33,7 @@ class RotationValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Rotation $rotation is invalid.");
-        $rotationValidator->validate($rotation);
+        $rotationValidator->valid($rotation);
     }
 
     /** @test */
@@ -44,7 +44,7 @@ class RotationValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Rotation $rotation is invalid.");
-        $rotationValidator->validate($rotation);
+        $rotationValidator->valid($rotation);
     }
 
     /** @test */
@@ -55,7 +55,7 @@ class RotationValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Rotation $rotation is invalid.");
-        $rotationValidator->validate($rotation);
+        $rotationValidator->valid($rotation);
     }
 
     /** @test */
@@ -66,6 +66,6 @@ class RotationValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Rotation $rotation is invalid.");
-        $rotationValidator->validate($rotation);
+        $rotationValidator->valid($rotation);
     }
 }

@@ -15,10 +15,10 @@ class QualityValidatorTest extends TestCase
         $config = new Config(__DIR__ . '/../config');
         $qualityValidator = new QualityValidator($config);
 
-        $this->assertTrue($qualityValidator->validate('color'));
-        $this->assertTrue($qualityValidator->validate('gray'));
-        $this->assertTrue($qualityValidator->validate('bitonal'));
-        $this->assertTrue($qualityValidator->validate('default'));
+        $this->assertTrue($qualityValidator->valid('color'));
+        $this->assertTrue($qualityValidator->valid('gray'));
+        $this->assertTrue($qualityValidator->valid('bitonal'));
+        $this->assertTrue($qualityValidator->valid('default'));
     }
 
     /** @test */
@@ -30,6 +30,6 @@ class QualityValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Quality $quality is invalid.");
-        $qualityValidator->validate($quality);
+        $qualityValidator->valid($quality);
     }
 }

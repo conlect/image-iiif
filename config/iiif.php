@@ -10,9 +10,7 @@ return [
 
     'mime' => [
         'jpg' => 'image/jpeg',
-        'jpeg' => 'image/jpeg',
         'tif' => 'image/tiff',
-        'tiff' => 'image/tiff',
         'png' => 'image/png',
         'gif' => 'image/gif',
         'jp2' => 'image/jp2',

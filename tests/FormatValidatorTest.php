@@ -15,13 +15,13 @@ class FormatValidatorTest extends TestCase
         $config = new Config(__DIR__ . '/../config');
         $formatValidator = new FormatValidator($config);
 
-        $this->assertTrue($formatValidator->validate('jpg'));
-        $this->assertTrue($formatValidator->validate('tif'));
-        $this->assertTrue($formatValidator->validate('png'));
-        $this->assertTrue($formatValidator->validate('gif'));
-        $this->assertTrue($formatValidator->validate('jp2'));
-        $this->assertTrue($formatValidator->validate('pdf'));
-        $this->assertTrue($formatValidator->validate('webp'));
+        $this->assertTrue($formatValidator->valid('jpg'));
+        $this->assertTrue($formatValidator->valid('tif'));
+        $this->assertTrue($formatValidator->valid('png'));
+        $this->assertTrue($formatValidator->valid('gif'));
+        $this->assertTrue($formatValidator->valid('jp2'));
+        $this->assertTrue($formatValidator->valid('pdf'));
+        $this->assertTrue($formatValidator->valid('webp'));
     }
 
     /** @test */
@@ -33,6 +33,6 @@ class FormatValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Format $format is invalid.");
-        $formatValidator->validate($format);
+        $formatValidator->valid($format);
     }
 }

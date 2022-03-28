@@ -16,38 +16,38 @@ class SizeValidatorTest extends TestCase
         $sizeValidator = new SizeValidator($config);
 
         // max
-        $this->assertTrue($sizeValidator->validate('max'));
+        $this->assertTrue($sizeValidator->valid('max'));
         // ^max
-        $this->assertTrue($sizeValidator->validate('^max'));
+        $this->assertTrue($sizeValidator->valid('^max'));
         // w,
-        $this->assertTrue($sizeValidator->validate('20,'));
+        $this->assertTrue($sizeValidator->valid('20,'));
         // ^w,
-        $this->assertTrue($sizeValidator->validate('^2000,'));
+        $this->assertTrue($sizeValidator->valid('^2000,'));
         // ,h
-        $this->assertTrue($sizeValidator->validate(',20'));
+        $this->assertTrue($sizeValidator->valid(',20'));
         // ^,h
-        $this->assertTrue($sizeValidator->validate('^,2000'));
+        $this->assertTrue($sizeValidator->valid('^,2000'));
         // pct:n
-        $this->assertTrue($sizeValidator->validate('pct:100'));
-        $this->assertTrue($sizeValidator->validate('pct:50'));
+        $this->assertTrue($sizeValidator->valid('pct:100'));
+        $this->assertTrue($sizeValidator->valid('pct:50'));
         // ^pct:n
-        $this->assertTrue($sizeValidator->validate('^pct:100'));
-        $this->assertTrue($sizeValidator->validate('^pct:50'));
-        $this->assertTrue($sizeValidator->validate('^pct:120'));
+        $this->assertTrue($sizeValidator->valid('^pct:100'));
+        $this->assertTrue($sizeValidator->valid('^pct:50'));
+        $this->assertTrue($sizeValidator->valid('^pct:120'));
         // w,h
-        $this->assertTrue($sizeValidator->validate('20,20'));
+        $this->assertTrue($sizeValidator->valid('20,20'));
         // ^w,h
-        $this->assertTrue($sizeValidator->validate('^2000,2000'));
+        $this->assertTrue($sizeValidator->valid('^2000,2000'));
         // !w,h
-        $this->assertTrue($sizeValidator->validate('!20,20'));
+        $this->assertTrue($sizeValidator->valid('!20,20'));
         // !^w,h
-        $this->assertTrue($sizeValidator->validate('!^2000,2000'));
+        $this->assertTrue($sizeValidator->valid('!^2000,2000'));
 
         // // pct:n
-        // $this->assertFalse($sizeValidator->validate('pct:120'));
-        // $this->assertFalse($sizeValidator->validate('pct:0'));
+        // $this->assertFalse($sizeValidator->valid('pct:120'));
+        // $this->assertFalse($sizeValidator->valid('pct:0'));
         // // ^pct:n
-        // $this->assertFalse($sizeValidator->validate('^pct:0'));
+        // $this->assertFalse($sizeValidator->valid('^pct:0'));
     }
 
     /** @test */
@@ -59,7 +59,7 @@ class SizeValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Size $size is invalid.");
-        $sizeValidator->validate($size);
+        $sizeValidator->valid($size);
     }
 
     /** @test */
@@ -71,7 +71,7 @@ class SizeValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Size $size is invalid.");
-        $sizeValidator->validate($size);
+        $sizeValidator->valid($size);
     }
 
     /** @test */
@@ -83,7 +83,7 @@ class SizeValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Size $size is invalid.");
-        $sizeValidator->validate($size);
+        $sizeValidator->valid($size);
     }
 
     /** @test */
@@ -95,7 +95,7 @@ class SizeValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Size $size is invalid.");
-        $sizeValidator->validate($size);
+        $sizeValidator->valid($size);
     }
 
     /** @test */
@@ -107,6 +107,6 @@ class SizeValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Size $size is invalid.");
-        $sizeValidator->validate($size);
+        $sizeValidator->valid($size);
     }
 }

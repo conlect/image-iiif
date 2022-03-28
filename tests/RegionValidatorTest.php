@@ -12,12 +12,12 @@ class RegionValidatorTest extends TestCase
     public function it_validates_region()
     {
         $regionValidator = new RegionValidator([]);
-        $this->assertTrue($regionValidator->validate('full'));
-        $this->assertTrue($regionValidator->validate('square'));
-        $this->assertTrue($regionValidator->validate('125,15,120,140'));
-        $this->assertTrue($regionValidator->validate('125,15,200,200'));
-        $this->assertTrue($regionValidator->validate('pct:41.6,7.5,40,70'));
-        $this->assertTrue($regionValidator->validate('pct:41.6,7.5,66.6,100'));
+        $this->assertTrue($regionValidator->valid('full'));
+        $this->assertTrue($regionValidator->valid('square'));
+        $this->assertTrue($regionValidator->valid('125,15,120,140'));
+        $this->assertTrue($regionValidator->valid('125,15,200,200'));
+        $this->assertTrue($regionValidator->valid('pct:41.6,7.5,40,70'));
+        $this->assertTrue($regionValidator->valid('pct:41.6,7.5,66.6,100'));
     }
 
     /** @test */
@@ -28,7 +28,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Region $region is invalid.");
-        $valid = $regionValidator->validate($region);
+        $valid = $regionValidator->valid($region);
     }
 
     /** @test */
@@ -40,7 +40,7 @@ class RegionValidatorTest extends TestCase
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Region $region is invalid.");
 
-        $regionValidator->validate($region);
+        $regionValidator->valid($region);
     }
 
     /** @test */
@@ -51,7 +51,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Region $region is invalid.");
-        $valid = $regionValidator->validate($region);
+        $valid = $regionValidator->valid($region);
     }
 
     /** @test */
@@ -62,7 +62,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Region $region is invalid.");
-        $valid = $regionValidator->validate($region);
+        $valid = $regionValidator->valid($region);
     }
 
     /** @test */
@@ -73,7 +73,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Region $region is invalid.");
-        $valid = $regionValidator->validate($region);
+        $valid = $regionValidator->valid($region);
     }
 
     /** @test */
@@ -84,7 +84,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Region $region is invalid.");
-        $valid = $regionValidator->validate($region);
+        $valid = $regionValidator->valid($region);
     }
 
     /** @test */
@@ -94,7 +94,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage('Region width and height should be greater than zero.');
-        $regionValidator->validate('125,15,0,20');
+        $regionValidator->valid('125,15,0,20');
     }
 
     /** @test */
@@ -104,7 +104,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage('Region width and height should be greater than zero.');
-        $regionValidator->validate('125,15,20,0');
+        $regionValidator->valid('125,15,20,0');
     }
 
     /** @test */
@@ -114,7 +114,7 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage('Region width and height should be greater than zero.');
-        $regionValidator->validate('pct:41,7,0,20');
+        $regionValidator->valid('pct:41,7,0,20');
     }
 
     /** @test */
@@ -124,6 +124,6 @@ class RegionValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage('Region width and height should be greater than zero.');
-        $regionValidator->validate('pct:41,7,20,0');
+        $regionValidator->valid('pct:41,7,20,0');
     }
 }

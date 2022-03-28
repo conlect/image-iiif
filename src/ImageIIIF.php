@@ -81,11 +81,11 @@ class ImageIIIF
         return true;
     }
 
-    public function info($identifier)
+    public function info($prefix = 'iiif', $identifier)
     {
         return [
             '@context' => 'http://iiif.io/api/image/2/context.json',
-            'id' => $this->config['base_url'] . '/' . $this->config['prefix'] . '/' . $identifier,
+            'id' => $this->config['base_url'] . '/' . $prefix . '/' . $identifier,
             'type' => 'ImageService3',
             'protocol' => 'http://iiif.io/api/image',
             'profile' => 'level2',

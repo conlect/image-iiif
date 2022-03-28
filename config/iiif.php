@@ -4,19 +4,15 @@ return [
 
     'driver' => 'gd', // or imagick
 
-    'base_url' => 'https://iiif.test',
-
-    'prefix' => 'iiif',
-
-    'allow_upscaling' => true,
-
     'tile_width' => 1024,
 
     'quality' => 90,
 
     'mime' => [
         'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
         'tif' => 'image/tiff',
+        'tiff' => 'image/tiff',
         'png' => 'image/png',
         'gif' => 'image/gif',
         'jp2' => 'image/jp2',
@@ -34,8 +30,6 @@ return [
         'bitonal',
         'default',
     ],
-
-    'quality_default' => 'color',
 
     'supports' => [
         'baseUriRedirect', // The base URI of the service will redirect to the image information document.

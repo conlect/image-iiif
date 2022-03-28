@@ -7,7 +7,7 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class FormatValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    public function validate($format)
+    public function valid($format)
     {
         if (in_array($format, array_keys($this->config['mime']))) {
             return true;

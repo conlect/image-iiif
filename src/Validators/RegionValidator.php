@@ -7,7 +7,7 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class RegionValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    public function validate($value)
+    public function valid($value)
     {
         $options = explode(',', $value);
 

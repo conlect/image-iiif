@@ -7,7 +7,7 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class RotationValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    public function validate($value)
+    public function valid($value)
     {
         $startValue = $value;
         $value = preg_replace('/!/', '', $value);

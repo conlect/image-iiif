@@ -17,7 +17,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
         '{!}?[0-9]+,[0-9]+',
     ];
 
-    public function validate($value)
+    public function valid($value)
     {
         $startValue = $value;
 

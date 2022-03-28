@@ -4,5 +4,5 @@ namespace Conlect\ImageIIIF\Validators\Contracts;
 
 interface ValidatorInterface
 {
-    public function validate($value);
+    public function valid($value);
 }

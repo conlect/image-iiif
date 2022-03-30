@@ -2,8 +2,8 @@
 
 namespace Conlect\ImageIIIF;
 
-use Noodlehaus\Config;
 use Intervention\Image\ImageManager;
+use Noodlehaus\Config;
 
 class ImageIIIF
 {
@@ -11,7 +11,7 @@ class ImageIIIF
 
     protected $config;
 
-    protected $image;
+    public $image;
 
     public function __construct(ImageManager $manager, Config $config = null)
     {
@@ -20,7 +20,7 @@ class ImageIIIF
     }
 
     public function load($file)
-    {   
+    {
         $this->image = $this->manager->make($file);
 
         return $this;
@@ -40,38 +40,67 @@ class ImageIIIF
 
     protected function applyParameters(array $parameters)
     {
-        $availableParameters = $this->config->get('parameters');
+        $iiifParameters = [
+            'region' => \Conlect\ImageIIIF\Parameters\Region::class,
+            'size' => \Conlect\ImageIIIF\Parameters\Size::class,
+            'rotation' => \Conlect\ImageIIIF\Parameters\Rotation::class,
+            'quality' => \Conlect\ImageIIIF\Parameters\Quality::class,
+            'format' => \Conlect\ImageIIIF\Parameters\Format::class,
+        ];
 
         foreach ($parameters as $parameter => $options) {
-            if (!in_array($parameter, array_keys($availableParameters))) {
+            if (! in_array($parameter, array_keys($iiifParameters))) {
                 continue;
             }
 
-            $this->image = (new $availableParameters[$parameter]($this->image))->apply($options);
+            $this->image = (new $iiifParameters[$parameter]($this->image))->apply($options);
         }
     }
 
-    public function info($identifier)
+    public function hasValidParameters(array $parameters)
+    {
+        $validators = [
+            'region' => \Conlect\ImageIIIF\Validators\RegionValidator::class,
+            'size' => \Conlect\ImageIIIF\Validators\SizeValidator::class,
+            'rotation' => \Conlect\ImageIIIF\Validators\RotationValidator::class,
+            'quality' => \Conlect\ImageIIIF\Validators\QualityValidator::class,
+            'format' => \Conlect\ImageIIIF\Validators\FormatValidator::class,
+        ];
+
+        foreach ($parameters as $parameter => $value) {
+            if (! in_array($parameter, array_keys($validators))) {
+                continue;
+            }
+
+            if (! (new $validators[$parameter]($this->config, $this->image))->valid($value)) {
+                return false;
+
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    public function info($prefix = 'iiif', $identifier)
     {
         return [
             '@context' => 'http://iiif.io/api/image/2/context.json',
-            '@id' => $this->config['base_url'] . '/' . $this->config['prefix'] . '/' . $identifier,
+            'id' => $this->config['base_url'] . '/' . $prefix . '/' . $identifier,
+            'type' => 'ImageService3',
             'protocol' => 'http://iiif.io/api/image',
+            'profile' => 'level2',
             'height' => $this->image->height(),
             'width' => $this->image->width(),
-            'profile' => [
-                'http://iiif.io/api/image/2/level2.json', [
-                    'supports' => $this->config['supports'],
-                    'qualities' => $this->config['qualities'],
-                    'formats' => $this->config['formats']
-                ]
-            ],
-            'tiles'=> [
+            'tiles' => [
                 [
                     'width' => $this->config['tile_width'],
                     'scaleFactors' => $this->getScaleFactors(),
-                ]
+                ],
             ],
+            'extraFormats' => array_keys($this->config['mime']),
+            'extraQualities' => $this->config['qualities'],
+            'extraFeatures' => $this->config['supports'],
         ];
     }
 
@@ -79,7 +108,7 @@ class ImageIIIF
     {
         $scaleFactors = [];
         $maxSize = max($this->image->width(), $this->image->height());
-        $total = (integer) ceil($maxSize / $this->config->get('tile_width'));
+        $total = (int) ceil($maxSize / $this->config->get('tile_width'));
         $factor = 1;
         while ($factor / 2 <= $total) {
             $scaleFactors[] = $factor;
@@ -88,6 +117,7 @@ class ImageIIIF
         if (count($scaleFactors) <= 1) {
             return;
         }
+
         return $scaleFactors;
     }
 }

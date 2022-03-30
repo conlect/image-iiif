@@ -1,9 +1,10 @@
 {
     "name": "conlect/image-iiif",
-    "description": "iiif",
+    "description": "iiif image API 3.0",
     "keywords": [
         "conlect",
-        "iiif"
+        "iiif",
+        "image api"
     ],
     "homepage": "https://github.com/conlect/image-iiif",
     "license": "MIT",
@@ -16,13 +17,19 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "hassankhan/config": "^2.0",
-        "intervention/image": "^2.4"
+        "php": ">=5.5.9",
+        "hassankhan/config": "^2.1",
+        "intervention/image": "^2.5"
     },
     "require-dev": {
-        "larapack/dd": "^1.0",
-        "phpunit/phpunit": "^7.0"
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "larapack/dd": "^1.1",
+        "phpunit/phpunit": "^9.3"
+    },
+    "suggest": {
+        "ext-gd": "to use GD library based image processing.",
+        "ext-imagick": "to use Imagick based image processing.",
+        "intervention/imagecache": "Caching extension for the Intervention Image library"
     },
     "autoload": {
         "psr-4": {
@@ -36,10 +43,16 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test-coverage": [
+            "@putenv XDEBUG_MODE=coverage",
+            "vendor/bin/phpunit --coverage-html coverage"
+        ],
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
 
     },
     "config": {
         "sort-packages": true
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

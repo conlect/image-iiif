@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to `conlect\IIIF` will be documented in this file
+All notable changes to `conlect\image-iiif` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 0.2.0 - 2018-11-18
 
-- initial release
+- stable pre-release allows passing config as array

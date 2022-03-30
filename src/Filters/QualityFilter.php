@@ -2,8 +2,8 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Image;
 
 class QualityFilter implements FilterInterface
 {
@@ -28,7 +28,7 @@ class QualityFilter implements FilterInterface
     public function applyFilter(Image $image)
     {
         if ($this->quality === 'default') {
-            $this->quality = config('iiif.quality_default');
+            return $image;
         }
 
         if ($this->quality === 'gray') {
@@ -40,7 +40,7 @@ class QualityFilter implements FilterInterface
         }
 
         if ($this->quality === 'bitonal') {
-            return $image->encode('bmp');
+            return $image;
         }
     }
 }

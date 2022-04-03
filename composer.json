@@ -18,8 +18,8 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "hassankhan/config": "^2.1",
-        "intervention/image": "^2.5"
+        "hassankhan/config": "^3.0.0",
+        "intervention/image": "^2.7.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",

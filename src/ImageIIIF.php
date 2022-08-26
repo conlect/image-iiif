@@ -49,7 +49,7 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $options) {
-            if (! in_array($parameter, array_keys($iiifParameters))) {
+            if (!in_array($parameter, array_keys($iiifParameters))) {
                 continue;
             }
 
@@ -68,11 +68,11 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $value) {
-            if (! in_array($parameter, array_keys($validators))) {
+            if (!in_array($parameter, array_keys($validators))) {
                 continue;
             }
 
-            if (! (new $validators[$parameter]($this->config, $this->image))->valid($value)) {
+            if (!(new $validators[$parameter]($this->config, $this->image))->valid($value)) {
                 return false;
 
                 break;
@@ -85,7 +85,7 @@ class ImageIIIF
     public function info($prefix = 'iiif', $identifier)
     {
         return [
-            '@context' => 'http://iiif.io/api/image/2/context.json',
+            '@context' => 'http://iiif.io/api/image/3/context.json',
             'id' => $this->config['base_url'] . '/' . $prefix . '/' . $identifier,
             'type' => 'ImageService3',
             'protocol' => 'http://iiif.io/api/image',

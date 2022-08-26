@@ -2,6 +2,8 @@
 
 return [
 
+    'base_url' => 'https://example.test',
+
     'driver' => 'gd', // or imagick
 
     'tile_width' => 1024,
@@ -13,8 +15,8 @@ return [
         'tif' => 'image/tiff',
         'png' => 'image/png',
         'gif' => 'image/gif',
-        'jp2' => 'image/jp2',
-        'pdf' => 'application/pdf',
+        // 'jp2' => 'image/jp2',
+        // 'pdf' => 'application/pdf',
         'webp' => 'image/webp',
     ],
 
@@ -25,13 +27,12 @@ return [
     'qualities' => [
         'color',
         'gray',
-        'bitonal',
+        // 'bitonal',
         'default',
     ],
 
     'supports' => [
         'baseUriRedirect', // The base URI of the service will redirect to the image information document.
-        'canonicalLinkHeader', //
-        'cors',
+        "jsonldMediaType",
     ],
 ];

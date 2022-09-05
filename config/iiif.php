@@ -32,7 +32,7 @@ return [
     ],
 
     'supports' => [
-        'baseUriRedirect', // The base URI of the service will redirect to the image information document.
+        'baseUriRedirect',
         "jsonldMediaType",
     ],
 ];

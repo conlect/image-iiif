@@ -1,4 +1,7 @@
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/conlect/image-iiif.svg?style=flat-square)](https://packagist.org/packages/conlect/image-iiif)
 [![Tests](https://github.com/conlect/image-iiif/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/conlect/image-iiif/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/conlect/image-iiif.svg?style=flat-square)](https://packagist.org/packages/conlect/image-iiif)
+
 
 # Image IIIF
 

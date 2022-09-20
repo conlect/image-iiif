@@ -16,7 +16,7 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
             return true;
         }
 
-        if (str_contains($options[0], ':') && !str_starts_with($options[0], 'pct:')) {
+        if (str_contains($options[0], ':') && ! str_starts_with($options[0], 'pct:')) {
             return $this->valueException($value);
         }
 
@@ -36,7 +36,7 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
             foreach ($options as $option) {
                 if (is_float($option + 0)) {
                     // if less than zero and doesn't start with a zero
-                    if ($option + 0 < 1 && !str_starts_with($option, '0')) {
+                    if ($option + 0 < 1 && ! str_starts_with($option, '0')) {
                         return $this->leadingZeroException();
                     }
                     // option should not have an extra trailing zero
@@ -45,6 +45,7 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
                     }
                 }
             }
+
             return true;
         }
 

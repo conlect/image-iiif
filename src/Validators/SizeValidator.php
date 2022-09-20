@@ -24,14 +24,20 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
         if (strpos($value, '^pct:') !== false) {
             $value = preg_replace('/^\^pct:/', '', $value);
 
+            if ((int)$value == 0) {
+                throw new BadRequestException("Size $startValue is invalid.");
+            }
             if ((int)$value >= 1) {
                 return true;
             }
         }
 
         if (strpos($value, 'pct:') !== false) {
-            $value = preg_replace('/^pct:/', '', $value);
+            $value = preg_replace('/pct:/', '', $value);
 
+            if ((int)$value == 0 || (int)$value > 100) {
+                throw new BadRequestException("Size $startValue is invalid.");
+            }
             if ((int)$value >= 1 && (int)$value <= 100) {
                 return true;
             }

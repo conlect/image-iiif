@@ -42,12 +42,6 @@ class SizeValidatorTest extends TestCase
         $this->assertTrue($sizeValidator->valid('!20,20'));
         // !^w,h
         $this->assertTrue($sizeValidator->valid('!^2000,2000'));
-
-        // // pct:n
-        // $this->assertFalse($sizeValidator->valid('pct:120'));
-        // $this->assertFalse($sizeValidator->valid('pct:0'));
-        // // ^pct:n
-        // $this->assertFalse($sizeValidator->valid('^pct:0'));
     }
 
     /** @test */

@@ -126,4 +126,24 @@ class RegionValidatorTest extends TestCase
         $this->expectExceptionMessage('Region width and height should be greater than zero.');
         $regionValidator->valid('pct:41,7,20,0');
     }
+
+    /** @test */
+    public function it_throws_no_leading_zero()
+    {
+        $regionValidator = new RegionValidator([]);
+        $this->expectException(BadRequestException::class);
+        $this->expectExceptionCode(400);
+        $this->expectExceptionMessage('Region values less than one require a leading zero.');
+        $regionValidator->valid('.9,15,120,140');
+    }
+
+    /** @test */
+    public function it_throws_no_trailing_zero()
+    {
+        $regionValidator = new RegionValidator([]);
+        $this->expectException(BadRequestException::class);
+        $this->expectExceptionCode(400);
+        $this->expectExceptionMessage('Region values should not contain a trailing zero.');
+        $regionValidator->valid('0.90,15,120,140');
+    }
 }

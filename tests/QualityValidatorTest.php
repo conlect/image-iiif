@@ -10,14 +10,13 @@ use PHPUnit\Framework\TestCase;
 class QualityValidatorTest extends TestCase
 {
     /** @test */
-    public function it_validates_format()
+    public function it_validates_quality()
     {
         $config = new Config(__DIR__ . '/../config');
         $qualityValidator = new QualityValidator($config);
 
         $this->assertTrue($qualityValidator->valid('color'));
         $this->assertTrue($qualityValidator->valid('gray'));
-        $this->assertTrue($qualityValidator->valid('bitonal'));
         $this->assertTrue($qualityValidator->valid('default'));
     }
 

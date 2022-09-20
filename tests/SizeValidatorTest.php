@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class SizeValidatorTest extends TestCase
 {
     /** @test */
-    public function it_validates_format()
+    public function it_validates_size()
     {
         $config = new Config(__DIR__ . '/../config');
         $sizeValidator = new SizeValidator($config);

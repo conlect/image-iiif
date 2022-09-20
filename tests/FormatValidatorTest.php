@@ -19,8 +19,6 @@ class FormatValidatorTest extends TestCase
         $this->assertTrue($formatValidator->valid('tif'));
         $this->assertTrue($formatValidator->valid('png'));
         $this->assertTrue($formatValidator->valid('gif'));
-        $this->assertTrue($formatValidator->valid('jp2'));
-        $this->assertTrue($formatValidator->valid('pdf'));
         $this->assertTrue($formatValidator->valid('webp'));
     }
 

@@ -2,7 +2,6 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
-use Conlect\ImageIIIF\Validators\ValidatorAbstract;
 use Conlect\ImageIIIF\Exceptions\BadRequestException;
 use Conlect\ImageIIIF\Exceptions\NotImplementedException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;

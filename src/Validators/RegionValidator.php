@@ -2,12 +2,15 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
-use Conlect\ImageIIIF\Validators\ValidatorShared;
-use Conlect\ImageIIIF\Validators\ValidatorAbstract;
+use function array_filter;
+
 use Conlect\ImageIIIF\Exceptions\BadRequestException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
-use function count, explode, in_array, array_filter, str_starts_with;
 
+use function count;
+use function explode;
+use function in_array;
+use function str_starts_with;
 
 class RegionValidator extends ValidatorAbstract implements ValidatorInterface
 {

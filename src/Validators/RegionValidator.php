@@ -36,6 +36,7 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
             foreach ($options as $option) {
                 $validator->floatingPointValidator($option);
             }
+
             return true;
         }
 

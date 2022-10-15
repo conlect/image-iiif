@@ -2,7 +2,9 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
+use Conlect\ImageIIIF\Validators\ValidatorAbstract;
 use Conlect\ImageIIIF\Exceptions\BadRequestException;
+use Conlect\ImageIIIF\Exceptions\NotImplementedException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class SizeValidator extends ValidatorAbstract implements ValidatorInterface
@@ -20,6 +22,10 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
     public function valid($value)
     {
         $startValue = $value;
+
+        if (str_starts_with($value, '^') && $this->config['allow_upscaling'] === false) {
+            throw new NotImplementedException("Upscaling is not allowed.");
+        }
 
         if (strpos($value, '^pct:') !== false) {
             $value = preg_replace('/^\^pct:/', '', $value);

@@ -3,6 +3,7 @@
 namespace Conlect\ImageIIIF\Validators;
 
 use Conlect\ImageIIIF\Exceptions\BadRequestException;
+use Conlect\ImageIIIF\Exceptions\NotImplementedException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class SizeValidator extends ValidatorAbstract implements ValidatorInterface
@@ -21,17 +22,27 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
     {
         $startValue = $value;
 
+        if (str_starts_with($value, '^') && $this->config['allow_upscaling'] === false) {
+            throw new NotImplementedException("Upscaling is not allowed.");
+        }
+
         if (strpos($value, '^pct:') !== false) {
             $value = preg_replace('/^\^pct:/', '', $value);
 
+            if ((int)$value == 0) {
+                throw new BadRequestException("Size $startValue is invalid.");
+            }
             if ((int)$value >= 1) {
                 return true;
             }
         }
 
         if (strpos($value, 'pct:') !== false) {
-            $value = preg_replace('/^pct:/', '', $value);
+            $value = preg_replace('/pct:/', '', $value);
 
+            if ((int)$value == 0 || (int)$value > 100) {
+                throw new BadRequestException("Size $startValue is invalid.");
+            }
             if ((int)$value >= 1 && (int)$value <= 100) {
                 return true;
             }

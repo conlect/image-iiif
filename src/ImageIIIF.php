@@ -84,8 +84,11 @@ class ImageIIIF
 
     public function info($prefix = 'iiif', $identifier)
     {
+        // Optional - maxWidth, maxHeight, maxArea
+        // sizes - prefered w,h pairs
+        // rights - CC license
         return [
-            '@context' => 'http://iiif.io/api/image/2/context.json',
+            '@context' => 'http://iiif.io/api/image/3/context.json',
             'id' => $this->config['base_url'] . '/' . $prefix . '/' . $identifier,
             'type' => 'ImageService3',
             'protocol' => 'http://iiif.io/api/image',

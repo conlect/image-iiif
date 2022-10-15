@@ -2,8 +2,15 @@
 
 namespace Conlect\ImageIIIF\Validators;
 
+use function array_filter;
+
 use Conlect\ImageIIIF\Exceptions\BadRequestException;
 use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
+
+use function count;
+use function explode;
+use function in_array;
+use function str_starts_with;
 
 class RegionValidator extends ValidatorAbstract implements ValidatorInterface
 {
@@ -11,12 +18,8 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
     {
         $options = explode(',', $value);
 
-        if (in_array($options[0], ['full', 'square'])) {
-            return true;
-        }
-
-        if (str_contains($options[0], ':') && ! str_starts_with($options[0], 'pct:')) {
-            return $this->valueException($value);
+        if (count($options) == 1) {
+            return $this->validateFullOrSquare($options[0]);
         }
 
         if (count($options) !== 4) {
@@ -28,10 +31,25 @@ class RegionValidator extends ValidatorAbstract implements ValidatorInterface
         }
 
         if (str_starts_with($options[0], 'pct:')) {
-            $options[0] = substr($options[0], 4);
+            $options[0] = \substr($options[0], 4);
         }
 
         if (4 === count(array_filter($options, 'is_numeric'))) {
+            $validator = new ValidatorShared();
+            foreach ($options as $option) {
+                $validator->floatingPointValidator($option);
+            }
+
+            return true;
+        }
+
+
+        return $this->valueException($value);
+    }
+
+    protected function validateFullOrSquare($value)
+    {
+        if (in_array($value, ['full', 'square'])) {
             return true;
         }
 

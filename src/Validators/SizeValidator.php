@@ -33,7 +33,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
             throw new NotImplementedException("Maximum size is not implemented.");
         }
 
-        if (!$this->allow_upscaling && $this->upscale) {
+        if (! $this->allow_upscaling && $this->upscale) {
             throw new NotImplementedException("Upscaling is not allowed.");
         }
 
@@ -65,9 +65,10 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
     protected function isValidPercent($value)
     {
         $percent_value = (int) $this->getPercentValue($value);
-        if ($percent_value < 1 || ($percent_value > 100 && !$this->upscale)) {
+        if ($percent_value < 1 || ($percent_value > 100 && ! $this->upscale)) {
             throw new BadRequestException("Size $value is invalid.");
         }
+
         return true;
     }
 }

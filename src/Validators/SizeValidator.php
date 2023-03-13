@@ -33,7 +33,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
             throw new NotImplementedException("Maximum size is not implemented.");
         }
 
-        if (!$this->allow_upscaling && $this->upscale) {
+        if (! $this->allow_upscaling && $this->upscale) {
             throw new NotImplementedException("Upscaling is not allowed.");
         }
 
@@ -70,6 +70,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
         if ($this->upscale) {
             return preg_replace('/^\^pct:/', '', $value);
         }
+
         return preg_replace('/pct:/', '', $value);
     }
 }

@@ -47,10 +47,10 @@ class RegionFilter implements FilterInterface
 
         if (strpos($this->options[0], 'pct:') === false) {
             // iiif - x,y,w,h
-            $x = $this->options[0];
-            $y = $this->options[1];
-            $w = $this->options[2];
-            $h = $this->options[3];
+            $x = (int) $this->options[0];
+            $y = (int) $this->options[1];
+            $w = (int) $this->options[2];
+            $h = (int) $this->options[3];
 
             if (($x + $w) > $this->width) {
                 $w = $w - (($x + $w) - $this->width);

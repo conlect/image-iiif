@@ -49,7 +49,7 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $options) {
-            if (! in_array($parameter, array_keys($iiifParameters))) {
+            if (!in_array($parameter, array_keys($iiifParameters))) {
                 continue;
             }
 
@@ -68,14 +68,12 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $value) {
-            if (! in_array($parameter, array_keys($validators))) {
+            if (!in_array($parameter, array_keys($validators))) {
                 continue;
             }
 
-            if (! (new $validators[$parameter]($this->config, $this->image))->valid($value)) {
+            if (!(new $validators[$parameter]($this->config, $this->image))->valid($value)) {
                 return false;
-
-                break;
             }
         }
 
@@ -101,7 +99,7 @@ class ImageIIIF
                     'scaleFactors' => $this->getScaleFactors(),
                 ],
             ],
-            'extraFormats' => array_keys($this->config['mime']),
+            'extraFormats' => $this->getExtraFormats(),
             'extraQualities' => $this->config['qualities'],
             'extraFeatures' => $this->config['supports'],
         ];
@@ -111,7 +109,7 @@ class ImageIIIF
     {
         $scaleFactors = [];
         $maxSize = max($this->image->width(), $this->image->height());
-        $total = (int) ceil($maxSize / $this->config->get('tile_width'));
+        $total = (int) ceil($maxSize / $this->config['tile_width']);
         $factor = 1;
         while ($factor / 2 <= $total) {
             $scaleFactors[] = $factor;
@@ -122,5 +120,14 @@ class ImageIIIF
         }
 
         return $scaleFactors;
+    }
+
+    protected function getExtraFormats()
+    {
+        if (is_array($this->config['mime'])) {
+            return array_keys($this->config['mime']);
+        }
+
+        return [];
     }
 }

@@ -3,6 +3,7 @@
 namespace Conlect\ImageIIIF\Tests;
 
 use Conlect\ImageIIIF\Exceptions\BadRequestException;
+use Conlect\ImageIIIF\Exceptions\NotImplementedException;
 use Conlect\ImageIIIF\Validators\SizeValidator;
 use Noodlehaus\Config;
 use PHPUnit\Framework\TestCase;
@@ -17,8 +18,6 @@ class SizeValidatorTest extends TestCase
 
         // max
         $this->assertTrue($sizeValidator->valid('max'));
-        // ^max
-        $this->assertTrue($sizeValidator->valid('^max'));
         // w,
         $this->assertTrue($sizeValidator->valid('20,'));
         // ^w,
@@ -101,6 +100,18 @@ class SizeValidatorTest extends TestCase
         $this->expectException(BadRequestException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage("Size $size is invalid.");
+        $sizeValidator->valid($size);
+    }
+
+    /** @test */
+    public function it_throws_exception_max_size()
+    {
+        $size = '^max';
+        $config = new Config(__DIR__ . '/../config');
+        $sizeValidator = new SizeValidator($config);
+        $this->expectException(NotImplementedException::class);
+        $this->expectExceptionCode(501);
+        $this->expectExceptionMessage("Maximum size is not implemented.");
         $sizeValidator->valid($size);
     }
 }

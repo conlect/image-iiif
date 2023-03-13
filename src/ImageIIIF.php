@@ -124,10 +124,12 @@ class ImageIIIF
 
     protected function getExtraFormats()
     {
-        if ($this->config['mime'] && is_array($this->config['mime'])) {
-            return array_keys($this->config['mime']);
+        $mime = $this->config['mime'] ?? [];
+        $extraFormat = [];
+        foreach ($mime as $key => $value) {
+            $extraFormat[] = $value;
         }
 
-        return [];
+        return $extraFormat;
     }
 }

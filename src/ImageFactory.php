@@ -34,7 +34,7 @@ class ImageFactory
      *
      * @return ImageManager
      */
-    public function getImageManager($driver = null)
+    public function getImageManager(string $driver = null)
     {
         if (is_null($driver)) {
             $driver = $this->driver;

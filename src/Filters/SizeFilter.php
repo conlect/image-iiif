@@ -55,8 +55,8 @@ class SizeFilter implements FilterInterface
 
         $constrainAspectRatio = strpos($this->options[0], '!') !== false ? true : false;
         $width = $constrainAspectRatio ? substr($this->options[0], 1) : $this->options[0];
-        $width = $width === '' ? null : $width;
-        $height = isset($this->options[1]) && $this->options[1] !== '' ? $this->options[1] : null;
+        $width = $width === '' ? null : intval($width);
+        $height = isset($this->options[1]) && $this->options[1] !== '' ? intval($this->options[1]) : null;
 
         return $image->resize(
             $width,

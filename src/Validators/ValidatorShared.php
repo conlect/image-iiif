@@ -6,7 +6,7 @@ use Conlect\ImageIIIF\Exceptions\BadRequestException;
 
 class ValidatorShared
 {
-    public function floatingPointValidator($value)
+    public function floatingPointValidator(string $value)
     {
         if (is_float($value + 0)) {
             // if less than zero and doesn't start with a zero

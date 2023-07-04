@@ -80,8 +80,9 @@ class ImageIIIF
         return true;
     }
 
-    public function info($prefix = 'iiif', $identifier)
+    public function info(string $prefix, string $identifier)
     {
+        // TODO
         // Optional - maxWidth, maxHeight, maxArea
         // sizes - prefered w,h pairs
         // rights - CC license

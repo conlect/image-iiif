@@ -43,14 +43,14 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-coverage": [
-            "@putenv XDEBUG_MODE=coverage",
-            "vendor/bin/phpunit --coverage-html coverage"
-        ],
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+        "test-coverage": "vendor/bin/phpunit --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -31,7 +31,7 @@ class RotationFilter implements FilterInterface
         $mirror = strpos($this->rotation, '!') === false ? false : true;
         $rotation = $mirror ? substr($this->rotation, 1) : $this->rotation;
         if ($mirror) {
-            $image->flip('h');
+            $image->flop();
         }
 
         return $image->rotate(-$rotation);

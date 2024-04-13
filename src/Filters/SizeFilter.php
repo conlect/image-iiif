@@ -57,6 +57,7 @@ class SizeFilter implements FilterInterface
         $width = $width === '' ? null : intval($width);
         $height = isset($this->options[1]) && $this->options[1] !== '' ? intval($this->options[1]) : null;
 
+        // TODO intervention 3.0 doesn't have a callback for aspect ratio
         return $image->resize(
             $width,
             $height,

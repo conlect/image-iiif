@@ -37,7 +37,10 @@ class QualityTest extends TestCase
         $result = $filter->applyFilter($image);
 
         // test that the image is grayscale
-        $color = $result->pickColor(random_int(0, $result->width()), random_int(0, $result->height()))->toHex();
+        $color = $result->pickColor(
+            random_int(0, $result->width()),
+            random_int(0, $result->height())
+        )->toHex();
 
         // Break the color into its components
         $r = hexdec(substr($color, 0, 2));

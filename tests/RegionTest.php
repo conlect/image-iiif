@@ -2,11 +2,10 @@
 
 namespace Conlect\ImageIIIF\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Conlect\ImageIIIF\Filters\RegionFilter;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-
+use Intervention\Image\ImageManager;
+use PHPUnit\Framework\TestCase;
 
 class RegionTest extends TestCase
 {

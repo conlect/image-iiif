@@ -2,7 +2,6 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Conlect\ImageIIIF\Filters\FilterInterface;
 use Intervention\Image\Image;
 
 class RegionFilter implements FilterInterface

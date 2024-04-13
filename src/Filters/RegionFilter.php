@@ -80,9 +80,4 @@ class RegionFilter implements FilterInterface
         // intervention - w,h,x,y
         return $image->crop($w, $h, $x, $y);
     }
-
-    protected function get_fit($width, $height)
-    {
-        return $width >= $height ? $width : $height;
-    }
 }

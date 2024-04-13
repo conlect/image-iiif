@@ -22,9 +22,9 @@
         "intervention/image": "^3.5.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.0",
+        "friendsofphp/php-cs-fixer": "^3.21.1",
         "larapack/dd": "^1.1",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^10.3.2"
     },
     "suggest": {
         "ext-gd": "to use GD library based image processing.",
@@ -42,7 +42,10 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
+        "test": [
+            "@putenv XDEBUG_MODE=coverage",
+            "vendor/bin/phpunit"
+        ],
         "test-coverage": [
             "@putenv XDEBUG_MODE=coverage",
             "vendor/bin/phpunit --coverage-html coverage"

@@ -2,7 +2,7 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Filters\FilterInterface;
+use Conlect\ImageIIIF\Filters\FilterInterface;
 use Intervention\Image\Image;
 
 class RegionFilter implements FilterInterface
@@ -42,7 +42,7 @@ class RegionFilter implements FilterInterface
         $this->height = $image->height();
 
         if ($this->options[0] === 'square') {
-            return $image->fit($this->get_fit($this->width, $this->height), null, null, 'center');
+            return $image->coverDown($this->width, $this->height, 'center');
         }
 
         if (strpos($this->options[0], 'pct:') === false) {

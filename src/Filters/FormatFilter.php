@@ -2,7 +2,6 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Filters\FilterInterface;
 use Intervention\Image\Image;
 
 class FormatFilter implements FilterInterface

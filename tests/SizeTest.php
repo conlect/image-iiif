@@ -14,7 +14,7 @@ class SizeTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new SizeFilter('max');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         $this->assertSame($image, $result);
     }
@@ -24,7 +24,7 @@ class SizeTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new SizeFilter('pct:50');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         $this->assertEquals(500, $result->width());
         $this->assertEquals(500, $result->height());
@@ -35,7 +35,7 @@ class SizeTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new SizeFilter('100,100');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         $this->assertEquals(100, $result->width());
         $this->assertEquals(100, $result->height());

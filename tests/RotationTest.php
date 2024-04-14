@@ -14,7 +14,7 @@ class RotationTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new RotationFilter('!0');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         $color = $result->pickColor(0, 0)->toHex();
         $this->assertEquals('9289b0', $color);
@@ -25,7 +25,7 @@ class RotationTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new RotationFilter('180');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         $color = $result->pickColor(0, 0)->toHex();
         $this->assertEquals('a177b6', $color);

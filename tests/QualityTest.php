@@ -14,7 +14,7 @@ class QualityTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new QualityFilter('default');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         $this->assertEquals($image, $result);
     }
@@ -24,7 +24,7 @@ class QualityTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new QualityFilter('color');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         $this->assertEquals($image, $result);
     }
@@ -34,7 +34,7 @@ class QualityTest extends TestCase
         $manager = new ImageManager(new Driver());
         $image = $manager->read('tests/data/image.png');
         $filter = new QualityFilter('gray');
-        $result = $filter->applyFilter($image);
+        $result = $filter->apply($image);
 
         // test that the image is grayscale
         $color = $result->pickColor(

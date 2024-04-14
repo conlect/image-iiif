@@ -2,9 +2,10 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Image;
+use Intervention\Image\Interfaces\ModifierInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 
-class RegionFilter implements FilterInterface
+class RegionFilter implements ModifierInterface
 {
     private $options;
     private $width;
@@ -22,11 +23,11 @@ class RegionFilter implements FilterInterface
     /**
      * Applies filter effects to given image
      *
-     * @param  Image $image
+     * @param  ImageInterface $image
      *
-     * @return  Image
+     * @return  ImageInterface
      */
-    public function applyFilter(Image $image)
+    public function apply(ImageInterface $image): ImageInterface
     {
         // full	The complete image is returned, without any cropping.
         // square	The region is defined as an area where the width and height are both equal to the length of the shorter dimension of the complete image. The region may be positioned anywhere in the longer dimension of the image content at the server’s discretion, and centered is often a reasonable default.

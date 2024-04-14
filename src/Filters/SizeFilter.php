@@ -2,9 +2,10 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Image;
+use Intervention\Image\Interfaces\ModifierInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 
-class SizeFilter implements FilterInterface
+class SizeFilter implements ModifierInterface
 {
     private $options;
 
@@ -20,11 +21,11 @@ class SizeFilter implements FilterInterface
     /**
      * Applies filter effects to given image
      *
-     * @param  Image $image
+     * @param  ImageInterface $image
      *
-     * @return  Image $image
+     * @return  ImageInterface $image
      */
-    public function applyFilter(Image $image)
+    public function apply(ImageInterface $image): ImageInterface
     {
         // TODO v3.0 support ^ or return a 501 (Not Implemented) status code
         // max	    The image or region is returned at the maximum size available, as indicated by maxWidth, maxHeight, maxArea in the profile description. This is the same as full if none of these properties are provided.

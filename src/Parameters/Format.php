@@ -9,6 +9,6 @@ class Format extends ParameterAbstract implements ParameterInterface
 {
     public function apply($options)
     {
-        return $this->image->filter(new FormatFilter($options));
+        return $this->image->encodeByExtension($options);
     }
 }

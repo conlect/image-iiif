@@ -9,6 +9,6 @@ class Rotation extends ParameterAbstract implements ParameterInterface
 {
     public function apply($options)
     {
-        return $this->image->filter(new RotationFilter($options));
+        return $this->image->modify(new RotationFilter($options));
     }
 }

@@ -9,6 +9,6 @@ class Quality extends ParameterAbstract implements ParameterInterface
 {
     public function apply($options)
     {
-        return $this->image->filter(new QualityFilter($options));
+        return $this->image->modify(new QualityFilter($options));
     }
 }

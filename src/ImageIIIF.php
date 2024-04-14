@@ -21,7 +21,8 @@ class ImageIIIF
 
     public function load($file)
     {
-        $this->image = $this->manager->make($file);
+        // dd($file);
+        $this->image = $this->manager->read(file_get_contents($file));
 
         return $this;
     }
@@ -35,7 +36,7 @@ class ImageIIIF
 
     public function stream()
     {
-        return $this->image->stream();
+        return $this->image;
     }
 
     protected function applyParameters(array $parameters)
@@ -49,7 +50,7 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $options) {
-            if (! in_array($parameter, array_keys($iiifParameters))) {
+            if (!in_array($parameter, array_keys($iiifParameters))) {
                 continue;
             }
 
@@ -68,11 +69,11 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $value) {
-            if (! in_array($parameter, array_keys($validators))) {
+            if (!in_array($parameter, array_keys($validators))) {
                 continue;
             }
 
-            if (! (new $validators[$parameter]($this->config, $this->image))->valid($value)) {
+            if (!(new $validators[$parameter]($this->config, $this->image))->valid($value)) {
                 return false;
             }
         }

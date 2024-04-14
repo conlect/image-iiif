@@ -2,9 +2,10 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Image;
+use Intervention\Image\Interfaces\ModifierInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 
-class QualityFilter implements FilterInterface
+class QualityFilter implements ModifierInterface
 {
     private $quality;
 
@@ -20,11 +21,11 @@ class QualityFilter implements FilterInterface
     /**
      * Applies filter effects to given image
      *
-     * @param  Image $image
+     * @param  ImageInterface $image
      *
-     * @return  Image
+     * @return  ImageInterface
      */
-    public function applyFilter(Image $image)
+    public function apply(ImageInterface $image): ImageInterface
     {
         if ($this->quality === 'default') {
             return $image;

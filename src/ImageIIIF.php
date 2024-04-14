@@ -50,7 +50,7 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $options) {
-            if (!in_array($parameter, array_keys($iiifParameters))) {
+            if (! in_array($parameter, array_keys($iiifParameters))) {
                 continue;
             }
 
@@ -69,11 +69,11 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $value) {
-            if (!in_array($parameter, array_keys($validators))) {
+            if (! in_array($parameter, array_keys($validators))) {
                 continue;
             }
 
-            if (!(new $validators[$parameter]($this->config, $this->image))->valid($value)) {
+            if (! (new $validators[$parameter]($this->config, $this->image))->valid($value)) {
                 return false;
             }
         }

@@ -59,4 +59,24 @@ class ImageFactoryTest extends TestCase
         $this->assertEquals('1000', $info['width']);
         $this->assertEquals('1000', $info['height']);
     }
+
+    public function test_image_factory_validates_parameters()
+    {
+        $factory = new ImageFactory();
+
+        $parameters = [
+            "prefix" => "conlect",
+            "identifier" => "1",
+            "region" => "full",
+            "size" => "max",
+            "rotation" => "0",
+            "quality" => "default",
+            "format" => "png",
+        ];
+        $path = "tests/data/image.png";
+
+        $valid = $factory()->load($path)->hasValidParameters($parameters);
+
+        $this->assertTrue($valid);
+    }
 }

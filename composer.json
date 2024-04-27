@@ -2,9 +2,9 @@
     "name": "conlect/image-iiif",
     "description": "iiif image API 3.0",
     "keywords": [
-        "conlect",
         "iiif",
-        "image api"
+        "image api",
+        "iiif-image"
     ],
     "homepage": "https://github.com/conlect/image-iiif",
     "license": "MIT",
@@ -28,8 +28,7 @@
     },
     "suggest": {
         "ext-gd": "to use GD library based image processing.",
-        "ext-imagick": "to use Imagick based image processing.",
-        "intervention/imagecache": "Caching extension for the Intervention Image library"
+        "ext-imagick": "to use Imagick based image processing."
     },
     "autoload": {
         "psr-4": {

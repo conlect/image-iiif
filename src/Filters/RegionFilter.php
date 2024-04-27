@@ -42,7 +42,8 @@ class RegionFilter implements ModifierInterface
         $this->height = $image->height();
 
         if ($this->options[0] === 'square') {
-            return $image->coverDown($this->width, $this->height, 'center');
+            $shorter = $this->width < $this->height ? $this->width : $this->height;
+            return $image->cover($shorter, $shorter, 'center');
         }
 
         if (strpos($this->options[0], 'pct:') === false) {

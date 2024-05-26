@@ -10,7 +10,7 @@ class ValidatorShared
     {
         if (is_float($value + 0)) {
             // if less than zero and doesn't start with a zero
-            if ($value + 0 < 1 && ! str_starts_with($value, '0')) {
+            if ($value + 0 < 1 && !str_starts_with($value, '0')) {
                 throw new BadRequestException('Region values less than one require a leading zero.');
             }
             // option should not have an extra trailing zero

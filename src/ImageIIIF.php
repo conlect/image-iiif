@@ -7,6 +7,8 @@ use Noodlehaus\Config;
 
 class ImageIIIF
 {
+    use \Conlect\ImageIIIF\Traits\SupportedFormats;
+
     public $manager;
 
     protected $config;
@@ -50,7 +52,7 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $options) {
-            if (! in_array($parameter, array_keys($iiifParameters))) {
+            if (!in_array($parameter, array_keys($iiifParameters))) {
                 continue;
             }
 
@@ -69,11 +71,11 @@ class ImageIIIF
         ];
 
         foreach ($parameters as $parameter => $value) {
-            if (! in_array($parameter, array_keys($validators))) {
+            if (!in_array($parameter, array_keys($validators))) {
                 continue;
             }
 
-            if (! (new $validators[$parameter]($this->config, $this->image))->valid($value)) {
+            if (!(new $validators[$parameter]($this->config, $this->image))->valid($value)) {
                 return false;
             }
         }
@@ -102,7 +104,7 @@ class ImageIIIF
                 ],
             ],
             'extraFormats' => $this->getExtraFormats(),
-            'extraQualities' => $this->config['qualities'],
+            'extraQualities' => ['color', 'gray'],
             'extraFeatures' => $this->config['supports'],
         ];
     }
@@ -126,12 +128,8 @@ class ImageIIIF
 
     protected function getExtraFormats()
     {
-        $mime = $this->config['mime'] ?? [];
-        $extraFormat = [];
-        foreach ($mime as $key => $value) {
-            $extraFormat[] = $value;
-        }
-
-        return $extraFormat;
+        $formats = $this->getSupportedFormats($this->config['driver']);
+        // All formats except level2 deafults of jpg and png
+        return array_intersect($formats, ['jpg', 'png']);
     }
 }

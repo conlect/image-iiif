@@ -59,7 +59,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
     protected function isValidPercent($value)
     {
         $percent_value = (int) $this->getPercentValue($value);
-        if ($percent_value < 1 || ($percent_value > 100 && !$this->upscale)) {
+        if ($percent_value < 1 || ($percent_value > 100 && ! $this->upscale)) {
             throw new BadRequestException("Size $value is invalid.");
         }
 

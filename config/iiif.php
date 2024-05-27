@@ -5,8 +5,6 @@ return [
 
     'driver' => 'gd', // or imagick
 
-    'allow_upscaling' => true,
-
     'tile_width' => 1024,
 
     'quality' => 90,
@@ -15,5 +13,8 @@ return [
     // 'maxHeight' => null,
     // 'maxWidth' => null,
 
-    'supports' => [],
+    'supports' => [
+        'mirroring',
+        'rotationArbitrary',
+    ],
 ];

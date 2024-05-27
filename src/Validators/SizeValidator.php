@@ -8,7 +8,6 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class SizeValidator extends ValidatorAbstract implements ValidatorInterface
 {
-    protected $allow_upscaling;
     protected $upscale;
     protected $regex = [
         ',[0-9]+',
@@ -17,11 +16,6 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
         '\^[0-9]+,',
         '{!}?[0-9]+,[0-9]+',
     ];
-
-    public function __construct($config)
-    {
-        $this->allow_upscaling = $config['allow_upscaling'];
-    }
 
     public function valid($value)
     {
@@ -33,13 +27,13 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
             throw new NotImplementedException("Maximum size is not implemented.");
         }
 
-        if (! $this->allow_upscaling && $this->upscale) {
+        $this->upscale = str_starts_with($value, '^');
+
+        if ($this->upscale) {
             throw new NotImplementedException("Upscaling is not allowed.");
         }
 
-        $this->upscale = str_starts_with($value, '^');
         $isPercent = str_contains($value, 'pct:');
-
 
         if ($isPercent) {
             return $this->isValidPercent($value);
@@ -65,7 +59,7 @@ class SizeValidator extends ValidatorAbstract implements ValidatorInterface
     protected function isValidPercent($value)
     {
         $percent_value = (int) $this->getPercentValue($value);
-        if ($percent_value < 1 || ($percent_value > 100 && ! $this->upscale)) {
+        if ($percent_value < 1 || ($percent_value > 100 && !$this->upscale)) {
             throw new BadRequestException("Size $value is invalid.");
         }
 

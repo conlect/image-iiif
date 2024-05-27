@@ -54,19 +54,23 @@ class SizeFilter implements ModifierInterface
         }
 
         $constrainAspectRatio = strpos($this->options[0], '!') !== false ? true : false;
+
         $width = $constrainAspectRatio ? substr($this->options[0], 1) : $this->options[0];
         $width = $width === '' ? null : intval($width);
         $height = isset($this->options[1]) && $this->options[1] !== '' ? intval($this->options[1]) : null;
 
-        // TODO intervention 3.0 doesn't have a callback for aspect ratio
-        return $image->resize(
-            $width,
-            $height,
-            function ($constraint) use ($constrainAspectRatio, $width, $height) {
-                if ($constrainAspectRatio || is_null($width) || is_null($height)) {
-                    $constraint->aspectRatio();
-                }
-            }
-        );
+        if ($constrainAspectRatio) {
+            return $image->scale($width, $height);
+        }
+
+        if ($width === null) {
+            return $image->scale(height: $height);
+        }
+
+        if ($height === null) {
+            return $image->scale(width: $width);
+        }
+
+        return $image->resize($width, $height);
     }
 }

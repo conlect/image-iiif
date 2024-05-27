@@ -4,7 +4,7 @@ namespace Conlect\ImageIIIF\Traits;
 
 trait supportedFormats
 {
-    function getSupportedFormats(string $driver)
+    public function getSupportedFormats(string $driver)
     {
         $formats = [
             'jpg',

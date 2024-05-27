@@ -67,21 +67,21 @@ class SizeFilter implements ModifierInterface
 
     protected function checkWidth($imageWidth, $width)
     {
-        if ($width > $imageWidth()) {
+        if ($width > $imageWidth) {
             throw new BadRequestException("Size $width, is greater than image width $imageWidth.");
         }
     }
 
     protected function checkHeight($imageHeight, $height)
     {
-        if ($height > $imageHeight()) {
+        if ($height > $imageHeight) {
             throw new BadRequestException("Size ,$height is greater than image height $imageHeight.");
         }
     }
 
     protected function checkSize($imageWidth, $imageHeight, $width, $height)
     {
-        if ($width > $imageWidth() || $height > $imageHeight()) {
+        if ($width > $imageWidth || $height > $imageHeight) {
             throw new BadRequestException("Size $width,$height are greater than image dimensions $imageWidth x $imageHeight");
         }
     }

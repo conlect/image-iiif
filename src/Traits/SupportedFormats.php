@@ -13,7 +13,7 @@ trait supportedFormats
             'webp',
         ];
 
-        if ($driver === 'imagick') {
+        if ($driver && $driver === 'imagick') {
             $formats[] = 'jp2';
             $formats[] = 'tif';
         }

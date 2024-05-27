@@ -9,11 +9,7 @@ return [
 
     'quality' => 90,
 
-    // 'maxArea' => null,
-    // 'maxHeight' => null,
-    // 'maxWidth' => null,
-
-    'supports' => [
+    'extraFeatures' => [
         'mirroring',
         'rotationArbitrary',
     ],

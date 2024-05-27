@@ -27,20 +27,10 @@ class QualityFilter implements ModifierInterface
      */
     public function apply(ImageInterface $image): ImageInterface
     {
-        if ($this->quality === 'default') {
-            return $image;
-        }
-
         if ($this->quality === 'gray') {
             return $image->greyscale();
         }
 
-        if ($this->quality === 'color') {
-            return $image;
-        }
-
-        if ($this->quality === 'bitonal') {
-            return $image;
-        }
+        return $image;
     }
 }

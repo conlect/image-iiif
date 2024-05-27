@@ -9,7 +9,7 @@ class QualityValidator extends ValidatorAbstract implements ValidatorInterface
 {
     public function valid($quality)
     {
-        if (in_array($quality, $this->config['qualities'])) {
+        if (in_array($quality, ['color', 'gray', 'default'])) {
             return true;
         }
 

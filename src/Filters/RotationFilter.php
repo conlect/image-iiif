@@ -2,10 +2,10 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Filters\FilterInterface;
-use Intervention\Image\Image;
+use Intervention\Image\Interfaces\ImageInterface;
+use Intervention\Image\Interfaces\ModifierInterface;
 
-class RotationFilter implements FilterInterface
+class RotationFilter implements ModifierInterface
 {
     private $rotation;
 
@@ -21,18 +21,18 @@ class RotationFilter implements FilterInterface
     /**
      * Applies filter effects to given image
      *
-     * @param  Image $image
+     * @param  ImageInterface $image
      *
-     * @return  Image
+     * @return  ImageInterface
      */
-    public function applyFilter(Image $image)
+    public function apply(ImageInterface $image): ImageInterface
     {
         // transparent background if possible
 
         $mirror = strpos($this->rotation, '!') === false ? false : true;
         $rotation = $mirror ? substr($this->rotation, 1) : $this->rotation;
         if ($mirror) {
-            $image->flip('h');
+            $image->flop();
         }
 
         return $image->rotate(-$rotation);

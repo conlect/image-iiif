@@ -2,10 +2,10 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Intervention\Image\Filters\FilterInterface;
-use Intervention\Image\Image;
+use Intervention\Image\Interfaces\ImageInterface;
+use Intervention\Image\Interfaces\ModifierInterface;
 
-class RegionFilter implements FilterInterface
+class RegionFilter implements ModifierInterface
 {
     private $options;
     private $width;
@@ -23,11 +23,11 @@ class RegionFilter implements FilterInterface
     /**
      * Applies filter effects to given image
      *
-     * @param  Image $image
+     * @param  ImageInterface $image
      *
-     * @return  Image
+     * @return  ImageInterface
      */
-    public function applyFilter(Image $image)
+    public function apply(ImageInterface $image): ImageInterface
     {
         // full	The complete image is returned, without any cropping.
         // square	The region is defined as an area where the width and height are both equal to the length of the shorter dimension of the complete image. The region may be positioned anywhere in the longer dimension of the image content at the server’s discretion, and centered is often a reasonable default.
@@ -42,7 +42,9 @@ class RegionFilter implements FilterInterface
         $this->height = $image->height();
 
         if ($this->options[0] === 'square') {
-            return $image->fit($this->get_fit($this->width, $this->height), null, null, 'center');
+            $shorter = $this->width < $this->height ? $this->width : $this->height;
+
+            return $image->cover($shorter, $shorter, 'center');
         }
 
         if (strpos($this->options[0], 'pct:') === false) {
@@ -80,10 +82,5 @@ class RegionFilter implements FilterInterface
 
         // intervention - w,h,x,y
         return $image->crop($w, $h, $x, $y);
-    }
-
-    protected function get_fit($width, $height)
-    {
-        return $width >= $height ? $width : $height;
     }
 }

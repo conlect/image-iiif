@@ -7,9 +7,13 @@ use Conlect\ImageIIIF\Validators\Contracts\ValidatorInterface;
 
 class FormatValidator extends ValidatorAbstract implements ValidatorInterface
 {
+    use \Conlect\ImageIIIF\Traits\SupportedFormats;
+
     public function valid($format)
     {
-        if (in_array($format, array_keys($this->config['mime']))) {
+        $formats = $this->getSupportedFormats($this->config['driver']);
+
+        if (in_array($format, $formats)) {
             return true;
         }
 

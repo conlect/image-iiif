@@ -13,9 +13,9 @@ class ImageFactory
      *
      * @var string
      */
-    protected $driver = 'gd';
+    protected string $driver = 'gd';
 
-    protected $config;
+    protected array $config;
 
     public function __invoke(array $config = null)
     {
@@ -40,10 +40,9 @@ class ImageFactory
             $driver = $this->driver;
         }
 
-        return new ImageManager(
-            [
-                'driver' => $driver,
-            ]
-        );
+        return match ($driver) {
+            'gd' => ImageManager::gd(),
+            'imagick' => ImageManager::imagick(),
+        };
     }
 }

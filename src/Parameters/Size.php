@@ -9,6 +9,6 @@ class Size extends ParameterAbstract implements ParameterInterface
 {
     public function apply($options)
     {
-        return $this->image->filter(new SizeFilter($options));
+        return $this->image->modify(new SizeFilter($options));
     }
 }

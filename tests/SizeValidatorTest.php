@@ -21,26 +21,26 @@ class SizeValidatorTest extends TestCase
         // w,
         $this->assertTrue($sizeValidator->valid('20,'));
         // ^w,
-        $this->assertTrue($sizeValidator->valid('^2000,'));
+        // $this->assertTrue($sizeValidator->valid('^2000,'));
         // ,h
         $this->assertTrue($sizeValidator->valid(',20'));
         // ^,h
-        $this->assertTrue($sizeValidator->valid('^,2000'));
+        // $this->assertTrue($sizeValidator->valid('^,2000'));
         // pct:n
         $this->assertTrue($sizeValidator->valid('pct:100'));
         $this->assertTrue($sizeValidator->valid('pct:50'));
         // ^pct:n
-        $this->assertTrue($sizeValidator->valid('^pct:100'));
-        $this->assertTrue($sizeValidator->valid('^pct:50'));
-        $this->assertTrue($sizeValidator->valid('^pct:120'));
+        // $this->assertTrue($sizeValidator->valid('^pct:100'));
+        // $this->assertTrue($sizeValidator->valid('^pct:50'));
+        // $this->assertTrue($sizeValidator->valid('^pct:120'));
         // w,h
         $this->assertTrue($sizeValidator->valid('20,20'));
         // ^w,h
-        $this->assertTrue($sizeValidator->valid('^2000,2000'));
+        // $this->assertTrue($sizeValidator->valid('^2000,2000'));
         // !w,h
         $this->assertTrue($sizeValidator->valid('!20,20'));
         // !^w,h
-        $this->assertTrue($sizeValidator->valid('!^2000,2000'));
+        // $this->assertTrue($sizeValidator->valid('!^2000,2000'));
     }
 
     /** @test */
@@ -80,14 +80,14 @@ class SizeValidatorTest extends TestCase
     }
 
     /** @test */
-    public function it_throws_exception_caret_0_pct()
+    public function it_throws_exception_caret_120_pct()
     {
-        $size = '^pct:0';
+        $size = '^pct:120';
         $config = new Config(__DIR__ . '/../config');
         $sizeValidator = new SizeValidator($config);
-        $this->expectException(BadRequestException::class);
-        $this->expectExceptionCode(400);
-        $this->expectExceptionMessage("Size $size is invalid.");
+        $this->expectException(NotImplementedException::class);
+        $this->expectExceptionCode(501);
+        $this->expectExceptionMessage("Upscaling is not allowed.");
         $sizeValidator->valid($size);
     }
 

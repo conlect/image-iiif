@@ -7,6 +7,8 @@ use Noodlehaus\Config;
 
 class ImageIIIF
 {
+    use \Conlect\ImageIIIF\Traits\SupportedFormats;
+
     public $manager;
 
     protected $config;
@@ -21,7 +23,8 @@ class ImageIIIF
 
     public function load($file)
     {
-        $this->image = $this->manager->make($file);
+        // dd($file);
+        $this->image = $this->manager->read(file_get_contents($file));
 
         return $this;
     }
@@ -35,7 +38,7 @@ class ImageIIIF
 
     public function stream()
     {
-        return $this->image->stream();
+        return $this->image;
     }
 
     protected function applyParameters(array $parameters)
@@ -101,8 +104,8 @@ class ImageIIIF
                 ],
             ],
             'extraFormats' => $this->getExtraFormats(),
-            'extraQualities' => $this->config['qualities'],
-            'extraFeatures' => $this->config['supports'],
+            'extraQualities' => ['color', 'gray'],
+            'extraFeatures' => $this->config['extraFeatures'],
         ];
     }
 
@@ -125,12 +128,9 @@ class ImageIIIF
 
     protected function getExtraFormats()
     {
-        $mime = $this->config['mime'] ?? [];
-        $extraFormat = [];
-        foreach ($mime as $key => $value) {
-            $extraFormat[] = $value;
-        }
+        $formats = $this->getSupportedFormats((string) $this->config['driver']);
 
-        return $extraFormat;
+        // All formats except level2 deafults of jpg and png
+        return array_intersect($formats, ['jpg', 'png']);
     }
 }

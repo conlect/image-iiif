@@ -2,7 +2,6 @@
 
 namespace Conlect\ImageIIIF\Filters;
 
-use Conlect\ImageIIIF\Exceptions\BadRequestException;
 use Intervention\Image\Interfaces\ImageInterface;
 use Intervention\Image\Interfaces\ModifierInterface;
 

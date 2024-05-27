@@ -128,7 +128,7 @@ class ImageIIIF
 
     protected function getExtraFormats()
     {
-        $formats = $this->getSupportedFormats($this->config['driver']);
+        $formats = $this->getSupportedFormats(str($this->config['driver']));
 
         // All formats except level2 deafults of jpg and png
         return array_intersect($formats, ['jpg', 'png']);

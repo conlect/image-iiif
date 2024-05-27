@@ -46,43 +46,18 @@ class SizeFilter implements ModifierInterface
         $width = $width === '' ? null : intval($width);
         $height = isset($this->options[1]) && $this->options[1] !== '' ? intval($this->options[1]) : null;
 
-        $this->checkSize($image->width(), $image->height(), $width, $height);
-        $this->checkWidth($image->width(), $width);
-        $this->checkHeight($image->height(), $height);
-
         if ($constrainAspectRatio) {
-            return $image->scale($width, $height);
+            return $image->scaleDown($width, $height);
         }
 
         if ($width === null) {
-            return $image->scale(height: $height);
+            return $image->scaleDown(height: $height);
         }
 
         if ($height === null) {
-            return $image->scale(width: $width);
+            return $image->scaleDown(width: $width);
         }
 
-        return $image->resize($width, $height);
-    }
-
-    protected function checkWidth($imageWidth, $width)
-    {
-        if ($width > $imageWidth) {
-            throw new BadRequestException("Size $width, is greater than image width $imageWidth.");
-        }
-    }
-
-    protected function checkHeight($imageHeight, $height)
-    {
-        if ($height > $imageHeight) {
-            throw new BadRequestException("Size ,$height is greater than image height $imageHeight.");
-        }
-    }
-
-    protected function checkSize($imageWidth, $imageHeight, $width, $height)
-    {
-        if ($width > $imageWidth || $height > $imageHeight) {
-            throw new BadRequestException("Size $width,$height are greater than image dimensions $imageWidth x $imageHeight");
-        }
+        return $image->resizeDown($width, $height);
     }
 }

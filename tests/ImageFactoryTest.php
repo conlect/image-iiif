@@ -25,14 +25,16 @@ class ImageFactoryTest extends TestCase
         $path = "tests/data/image.png";
 
         $manager = new ImageManager(new Driver());
-        $image = $manager->read($path);
-        $image = $image->encodeByExtension('png');
+        $expected = $manager->read($path);
+        $expectedData = $expected->encodeByExtension('png')->toString();
 
         $result = $factory()->load($path)
             ->withParameters($parameters)
             ->stream();
 
-        $this->assertEquals($image, $result);
+        $resultData = $result->toString();
+        // Compare the actual binary data of the images
+        $this->assertEquals($expectedData, $resultData);
     }
 
     public function test_image_factory_returns_info()

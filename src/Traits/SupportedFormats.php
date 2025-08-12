@@ -2,7 +2,7 @@
 
 namespace Conlect\ImageIIIF\Traits;
 
-trait supportedFormats
+trait SupportedFormats
 {
     public function getSupportedFormats(string $driver)
     {
